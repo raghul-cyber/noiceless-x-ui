@@ -99,7 +99,7 @@ export const WaistPouch: React.FC = () => {
           <mesh castShadow={!isXRay}>
             <boxGeometry args={[1.12, 0.14, 0.16]} />
             <meshStandardMaterial
-              color={isSelected ? '#00e5ff' : isHovered ? '#4d5e4a' : TACTICAL_COLORS.oliveDrab}
+              color={isSelected ? '#00e599' : isHovered ? '#4d5e4a' : TACTICAL_COLORS.oliveDrab}
               roughness={0.9}
             />
           </mesh>

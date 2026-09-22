@@ -60,7 +60,7 @@ export const DevicesView: React.FC<DevicesViewProps> = ({ store }) => {
           <div className="space-y-1.5">
             <div className="text-[10px] text-[#8ba695] uppercase tracking-wider">HARDWARE IDENTIFIER:</div>
             <div className="bg-[#030906] p-2.5 rounded-lg border border-[#143526] text-[#f0fdf4] font-semibold text-[11px] flex items-center justify-between">
-              <span>NOISELESS-X Tactical Boom Mic (Hypercardioid Electret)</span>
+              <span>NOISELESS-X6 Tactical Boom Mic (Hypercardioid Electret)</span>
               <span className="text-[#00e599] text-[9px]">USB AUDIO CLASS 2.0</span>
             </div>
           </div>

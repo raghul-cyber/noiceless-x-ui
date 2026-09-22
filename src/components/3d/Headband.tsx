@@ -39,7 +39,7 @@ export const Headband: React.FC = () => {
               ? new THREE.Color('#021a30')
               : new THREE.Color(TACTICAL_COLORS.tacticalBlack)
           }
-          emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+          emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
           emissiveIntensity={isXRay ? 0.3 : 0}
           roughness={isXRay ? 0.1 : 0.78}
           metalness={isXRay ? 0.8 : 0.1}
@@ -79,7 +79,7 @@ export const Headband: React.FC = () => {
           <cylinderGeometry args={[0.03, 0.03, 0.04, 16]} />
           <meshStandardMaterial
             color={new THREE.Color(TACTICAL_COLORS.steelMetal)}
-            emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+            emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
             emissiveIntensity={isXRay ? 0.8 : 0}
             metalness={0.9}
           />
@@ -97,7 +97,7 @@ export const Headband: React.FC = () => {
           <cylinderGeometry args={[0.03, 0.03, 0.04, 16]} />
           <meshStandardMaterial
             color={new THREE.Color(TACTICAL_COLORS.steelMetal)}
-            emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+            emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
             emissiveIntensity={isXRay ? 0.8 : 0}
             metalness={0.9}
           />

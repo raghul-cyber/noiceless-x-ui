@@ -71,8 +71,8 @@ export const BoomMicrophone: React.FC<BoomMicrophoneProps> = ({ explodeDistance 
         <mesh position={[0.16, -0.08, 0.28]} rotation={[0.3, 0.55, -0.05]} castShadow={!isXRay}>
           <cylinderGeometry args={[0.024, 0.024, 0.44, 12]} />
           <meshStandardMaterial
-            color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color(TACTICAL_COLORS.tacticalBlack)}
-            emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+            color={isXRay ? new THREE.Color('#00e599') : new THREE.Color(TACTICAL_COLORS.tacticalBlack)}
+            emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
             emissiveIntensity={isXRay ? 0.8 : 0}
             roughness={0.6}
           />
@@ -82,8 +82,8 @@ export const BoomMicrophone: React.FC<BoomMicrophoneProps> = ({ explodeDistance 
         <mesh position={[0.48, -0.20, 0.68]} rotation={[0.22, 0.75, -0.12]} castShadow={!isXRay}>
           <cylinderGeometry args={[0.022, 0.022, 0.52, 12]} />
           <meshStandardMaterial
-            color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color(TACTICAL_COLORS.tacticalBlack)}
-            emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+            color={isXRay ? new THREE.Color('#00e599') : new THREE.Color(TACTICAL_COLORS.tacticalBlack)}
+            emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
             emissiveIntensity={isXRay ? 0.8 : 0}
             roughness={0.6}
           />
@@ -93,8 +93,8 @@ export const BoomMicrophone: React.FC<BoomMicrophoneProps> = ({ explodeDistance 
         <mesh position={[0.76, -0.32, 1.05]} rotation={[0.12, 1.15, -0.15]} castShadow={!isXRay}>
           <cylinderGeometry args={[0.02, 0.02, 0.42, 12]} />
           <meshStandardMaterial
-            color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color(TACTICAL_COLORS.tacticalBlack)}
-            emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+            color={isXRay ? new THREE.Color('#00e599') : new THREE.Color(TACTICAL_COLORS.tacticalBlack)}
+            emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
             emissiveIntensity={isXRay ? 0.8 : 0}
             roughness={0.6}
           />
@@ -132,10 +132,10 @@ export const BoomMicrophone: React.FC<BoomMicrophoneProps> = ({ explodeDistance 
                 : isHovered
                 ? new THREE.Color('#38bdf8')
                 : isXRay
-                ? new THREE.Color('#00e5ff')
+                ? new THREE.Color('#00e599')
                 : new THREE.Color('#14171d')
             }
-            emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+            emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
             emissiveIntensity={isXRay ? 0.6 : 0}
             roughness={0.95}
             transparent={isXRay}

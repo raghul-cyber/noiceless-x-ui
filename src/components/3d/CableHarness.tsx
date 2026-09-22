@@ -108,7 +108,7 @@ export const CableHarness: React.FC = () => {
         <mesh ref={pulseRef}>
           <sphereGeometry args={[0.012, 12, 12]} />
           <meshBasicMaterial
-            color={isXRay ? '#00e5ff' : TACTICAL_COLORS.cleanGreen}
+            color={isXRay ? '#00e599' : TACTICAL_COLORS.cleanGreen}
             transparent
             opacity={0.9}
           />

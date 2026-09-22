@@ -145,7 +145,7 @@ export const CancellationZone3D: React.FC = () => {
       <mesh ref={cancelGlowRef} position={[0.005, 0, 0]}>
         <sphereGeometry args={[0.018, 16, 16]} />
         <meshBasicMaterial
-          color={ancActive ? '#00e5ff' : '#f43f5e'}
+          color={ancActive ? '#00e599' : '#f43f5e'}
           transparent
           opacity={0.6}
           blending={THREE.AdditiveBlending}
@@ -169,7 +169,7 @@ export const CancellationZone3D: React.FC = () => {
         <mesh key={idx} position={[0, 0, zOffset]} rotation={[0, Math.PI / 2, 0]}>
           <ringGeometry args={[0.022, 0.024, 24]} />
           <meshBasicMaterial
-            color="#00e5ff"
+            color="#00e599"
             transparent
             opacity={0.25}
             side={THREE.DoubleSide}

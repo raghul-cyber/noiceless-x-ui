@@ -281,8 +281,8 @@ export const LiveAudioMonitoring: React.FC<LiveAudioMonitoringProps> = ({ store 
                 : 'bg-[#1a1306] border-[#f59e0b]/40 text-[#f59e0b]'
             }`}>
               <Zap className={`w-4 h-4 mx-auto mb-1 ${store.isProcessingActive ? 'animate-pulse text-[#00e599]' : 'text-[#f59e0b]'}`} />
-              <div className="font-mono text-[10px] font-bold">RNNNOISE</div>
-              <div className="text-[9px] font-mono opacity-80 mt-0.5">22 BANDS</div>
+              <div className="font-mono text-[10px] font-bold">DFNET3</div>
+              <div className="text-[9px] font-mono opacity-80 mt-0.5">FULL-BAND</div>
             </div>
           </div>
 

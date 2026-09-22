@@ -79,8 +79,8 @@ export const RaspberryPi: React.FC<RaspberryPiProps> = ({ explodeDistance = 0 })
       <mesh position={[-0.05, 0.028, 0.02]} castShadow={!isXRay}>
         <boxGeometry args={[0.24, 0.024, 0.24]} />
         <meshStandardMaterial
-          color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color(TACTICAL_COLORS.steelMetal)}
-          emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+          color={isXRay ? new THREE.Color('#00e599') : new THREE.Color(TACTICAL_COLORS.steelMetal)}
+          emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
           emissiveIntensity={isXRay ? 2.0 : 0}
           metalness={0.9}
           roughness={0.2}
@@ -98,7 +98,7 @@ export const RaspberryPi: React.FC<RaspberryPiProps> = ({ explodeDistance = 0 })
       <mesh position={[-0.05, 0.025, -0.16]} castShadow={!isXRay}>
         <boxGeometry args={[0.16, 0.016, 0.14]} />
         <meshStandardMaterial
-          color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#11141a')}
+          color={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#11141a')}
           emissive={isXRay ? new THREE.Color('#0077ff') : new THREE.Color('#000000')}
           emissiveIntensity={isXRay ? 1.2 : 0}
           metalness={0.8}

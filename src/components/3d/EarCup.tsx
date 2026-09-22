@@ -61,7 +61,7 @@ export const EarCup: React.FC<EarCupProps> = ({ side }) => {
         <mesh position={[dir * 0.04, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
           <circleGeometry args={[0.30, 24]} />
           <meshBasicMaterial
-            color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#10141a')}
+            color={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#10141a')}
             transparent={isXRay}
             opacity={isXRay ? 0.3 : 1.0}
             side={THREE.DoubleSide}
@@ -98,7 +98,7 @@ export const EarCup: React.FC<EarCupProps> = ({ side }) => {
                   ? new THREE.Color('#021a30')
                   : new THREE.Color(TACTICAL_COLORS.tacticalBlack)
               }
-              emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+              emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
               emissiveIntensity={isXRay ? 0.35 : 0}
               roughness={isXRay ? 0.1 : 0.75}
               metalness={isXRay ? 0.8 : 0.15}
@@ -118,8 +118,8 @@ export const EarCup: React.FC<EarCupProps> = ({ side }) => {
           <mesh position={[dir * -0.155, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
             <boxGeometry args={[0.22, 0.10, 0.015]} />
             <meshStandardMaterial
-              color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color(TACTICAL_COLORS.darkMetal)}
-              emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+              color={isXRay ? new THREE.Color('#00e599') : new THREE.Color(TACTICAL_COLORS.darkMetal)}
+              emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
               emissiveIntensity={isXRay ? 1.0 : 0}
               metalness={0.9}
             />

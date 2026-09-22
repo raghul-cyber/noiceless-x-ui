@@ -98,7 +98,7 @@ export const HumanOperatorHead: React.FC<HumanOperatorHeadProps> = ({ explodeDis
         <mesh castShadow={!isXRay}>
           <boxGeometry args={[0.105, 0.006, 0.02]} />
           <meshStandardMaterial
-            color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#14171d')}
+            color={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#14171d')}
             roughness={0.4}
             metalness={0.2}
           />
@@ -112,7 +112,7 @@ export const HumanOperatorHead: React.FC<HumanOperatorHeadProps> = ({ explodeDis
         <mesh position={[0, -0.014, 0.006]} rotation={[0.08, 0, 0]}>
           <boxGeometry args={[0.098, 0.028, 0.002]} />
           <meshPhysicalMaterial
-            color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#1e293b')}
+            color={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#1e293b')}
             roughness={0.1}
             metalness={0.1}
             transmission={isXRay ? 0.7 : 0.85}

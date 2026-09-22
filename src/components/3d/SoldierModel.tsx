@@ -135,7 +135,7 @@ export const SoldierModel: React.FC = () => {
           {[-0.6, -0.2, 0.2, 0.6, 1.0, 1.4].map((yOff, idx) => (
             <mesh key={idx} position={[0, yOff, 0]} rotation={[Math.PI / 2, 0, 0]}>
               <ringGeometry args={[0.32, 0.33, 32]} />
-              <meshBasicMaterial color="#00e5ff" transparent opacity={0.25} side={THREE.DoubleSide} />
+              <meshBasicMaterial color="#00e599" transparent opacity={0.25} side={THREE.DoubleSide} />
             </mesh>
           ))}
         </group>

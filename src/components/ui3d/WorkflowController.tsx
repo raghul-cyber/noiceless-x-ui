@@ -95,8 +95,8 @@ export const WorkflowController: React.FC = () => {
         {/* Left: Brand & Active Stage Badge */}
         <div className="flex items-center gap-2 flex-shrink-0">
           <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-[#00e599]/10 border border-[#00e599]/30 text-[#00e599]">
-            <Activity className="w-3.5 h-3.5" />
-            <span className="font-bold text-[11px] tracking-wider">NOISELESS-X</span>
+            <img src="/logo.png" alt="NOISELESS-X6" className="w-4 h-4 object-contain" />
+            <span className="font-bold text-[11px] tracking-wider text-[#f0fdf4]">NOISELESS-X6</span>
           </div>
           <div className="hidden lg:flex items-center gap-1.5 text-[10px] text-[#8ba695]">
             <span className="text-[#4e6a5b]">|</span>

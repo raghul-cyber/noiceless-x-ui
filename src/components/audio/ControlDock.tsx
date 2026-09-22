@@ -97,8 +97,8 @@ export const ControlDock: React.FC<ControlDockProps> = ({ store }) => {
               DSP PROCESSING STAGE
             </span>
           </div>
-          <span className="font-mono text-[9px] text-[#00e599] bg-[#00e599]/10 px-1.5 py-0.5 rounded border border-[#00e599]/30">
-            RNN RECURRENT
+          <span className="font-mono text-[9px] text-[#00e599] bg-[#00e599]/10 px-1.5 py-0.5 rounded border border-[#00e599]/30 font-semibold">
+            DEEP FILTER
           </span>
         </div>
 
@@ -106,7 +106,7 @@ export const ControlDock: React.FC<ControlDockProps> = ({ store }) => {
           <div className="flex justify-between items-center text-xs">
             <span className="text-[#4e6a5b]">NEURAL ALGORITHM:</span>
             <span className="text-[#00e599] font-bold bg-[#040a07] px-2 py-0.5 rounded-[2px] border border-[#00e599]/30 text-[11px]">
-              RNNNOISE v2.4 (22-BANDS)
+              DeepFilterNet3 (Full-Band ERB)
             </span>
           </div>
 

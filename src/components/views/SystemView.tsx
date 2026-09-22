@@ -54,7 +54,7 @@ export const SystemView: React.FC<SystemViewProps> = ({ store }) => {
           <div className="text-2xl font-bold text-[#10b981] tabular-nums font-mono">
             0.82 ms
           </div>
-          <span className="text-[10px] text-[#8ba695] block">Per 10ms Audio Frame (RNNNoise)</span>
+          <span className="text-[10px] text-[#8ba695] block">Per 10ms Audio Frame (DeepFilterNet3)</span>
         </div>
 
         <div className="bg-[#08140e] border border-[#143526] rounded-xl p-3.5 space-y-1 shadow-md shadow-black/30">
@@ -110,7 +110,7 @@ export const SystemView: React.FC<SystemViewProps> = ({ store }) => {
             <div className="flex justify-between text-[#8ba695] mb-1.5 text-[11px]">
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00e599]" />
-                <span>2. RNNNOISE RECURRENT NEURAL NETWORK INFERENCE</span>
+                <span>2. DEEPFILTERNET3 FULL-BAND NEURAL INFERENCE</span>
               </span>
               <span className="text-[#00e599] font-bold tabular-nums">18.0 ms (42.8%)</span>
             </div>

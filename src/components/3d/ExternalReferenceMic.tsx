@@ -64,8 +64,8 @@ export const ExternalReferenceMic: React.FC<ExternalReferenceMicProps> = ({ expl
       <mesh position={[-0.04, 0.07, 0]} rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[0.025, 0.025, 0.1, 16]} />
         <meshStandardMaterial
-          color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color(TACTICAL_COLORS.steelMetal)}
-          emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+          color={isXRay ? new THREE.Color('#00e599') : new THREE.Color(TACTICAL_COLORS.steelMetal)}
+          emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
           emissiveIntensity={isXRay ? 1.0 : 0}
           metalness={0.9}
         />
@@ -87,10 +87,10 @@ export const ExternalReferenceMic: React.FC<ExternalReferenceMicProps> = ({ expl
               : isHovered
               ? new THREE.Color('#38bdf8')
               : isXRay
-              ? new THREE.Color('#00e5ff')
+              ? new THREE.Color('#00e599')
               : new THREE.Color(TACTICAL_COLORS.tacticalBlack)
           }
-          emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+          emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
           emissiveIntensity={isXRay ? 1.8 : 0}
           metalness={0.8}
           roughness={0.3}
@@ -112,8 +112,8 @@ export const ExternalReferenceMic: React.FC<ExternalReferenceMicProps> = ({ expl
           <mesh key={idx} position={[-0.25, y, z]} rotation={[0, 0, Math.PI / 2]}>
             <cylinderGeometry args={[0.008, 0.008, 0.14, 8]} />
             <meshStandardMaterial
-              color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color(TACTICAL_COLORS.darkMetal)}
-              emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+              color={isXRay ? new THREE.Color('#00e599') : new THREE.Color(TACTICAL_COLORS.darkMetal)}
+              emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
               emissiveIntensity={isXRay ? 0.9 : 0}
               metalness={0.9}
             />
@@ -135,7 +135,7 @@ export const ExternalReferenceMic: React.FC<ExternalReferenceMicProps> = ({ expl
           {[0, 1].map((idx) => (
             <mesh key={idx}>
               <ringGeometry args={[0.06, 0.08, 20]} />
-              <meshBasicMaterial color="#00e5ff" transparent opacity={0.5} side={THREE.DoubleSide} />
+              <meshBasicMaterial color="#00e599" transparent opacity={0.5} side={THREE.DoubleSide} />
             </mesh>
           ))}
         </group>

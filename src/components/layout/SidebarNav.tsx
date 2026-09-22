@@ -30,63 +30,90 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({ store }) => {
 
   return (
     <aside className="w-56 border-r border-[#143526] bg-[#06100b] flex flex-col justify-between select-none z-20 flex-shrink-0">
-      {/* Primary Navigation List */}
-      <div className="py-3">
-        <div className="px-4 mb-2.5 text-[9px] font-mono tracking-widest text-[#4e6a5b] uppercase flex items-center justify-between">
-          <span>OPERATIONAL SUITE</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#00e599]/60" />
+      <div className="flex flex-col">
+        {/* Official NOISELESS-X6 Insignia Plate */}
+        <div className="p-3 border-b border-[#143526] bg-[#040d08]">
+          <div className="flex items-center space-x-2.5">
+            <div className="relative w-10 h-10 rounded-full border border-[#00e599]/40 bg-[#020604] flex items-center justify-center overflow-hidden flex-shrink-0 shadow-[0_0_10px_rgba(0,229,153,0.25)]">
+              <img 
+                src="/logo.png" 
+                alt="NOISELESS-X6" 
+                className="w-full h-full object-contain" 
+              />
+            </div>
+            <div className="flex flex-col min-w-0">
+              <span className="text-xs font-bold tracking-wider text-[#f0fdf4] truncate font-sans">
+                NOISELESS-X6
+              </span>
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00e599] animate-pulse" />
+                <span className="text-[9px] font-mono text-[#00e599] font-semibold tracking-wider">
+                  TAC-AUDIO ARMED
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-        <nav className="space-y-1 px-2 font-mono">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = store.activeView === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => store.setActiveView(item.id)}
-                className={`w-full flex items-center justify-between px-3 py-2 rounded-[3px] text-xs tracking-wider transition-all text-left ${
-                  isActive
-                    ? 'bg-[#0a2318] text-[#00e599] font-bold border-l-2 border-[#00e599] pl-2.5 shadow-[inset_0_0_12px_rgba(0,229,153,0.06)]'
-                    : 'text-[#8ba695] hover:text-[#f0fdf4] hover:bg-[#0a1c13]'
-                }`}
-              >
-                <div className="flex items-center space-x-2.5">
-                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#00e599]' : 'text-[#4e6a5b]'}`} />
-                  <span className="text-[11px] font-semibold">{item.label}</span>
-                </div>
-                {item.badge && (
-                  <span className={`text-[9px] px-1.5 py-0.5 rounded font-mono ${
-                    isActive 
-                      ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]/30' 
-                      : item.badge === 'ON' || item.badge === 'REALTIME'
-                      ? 'bg-[#10b981]/15 text-[#10b981] border border-[#10b981]/25'
-                      : 'bg-[#040a07] text-[#4e6a5b] border border-[#143526]'
-                  }`}>
-                    {item.badge}
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </nav>
+
+        {/* Primary Navigation List */}
+        <div className="py-3">
+          <div className="px-3.5 mb-2 text-[9px] font-mono tracking-widest text-[#4e6a5b] uppercase flex items-center justify-between">
+            <span>OPERATIONAL SUITE</span>
+            <span className="text-[8px] text-[#8ba695] font-semibold">REV 4.2</span>
+          </div>
+
+          <nav className="space-y-1 px-2 font-mono">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = store.activeView === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => store.setActiveView(item.id)}
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-xs tracking-wider transition-all text-left ${
+                    isActive
+                      ? 'bg-[#00e599]/15 text-[#00e599] font-bold border-l-2 border-[#00e599] pl-2.5 shadow-[inset_0_0_12px_rgba(0,229,153,0.08)]'
+                      : 'text-[#8ba695] hover:text-[#f0fdf4] hover:bg-[#0a1c13]'
+                  }`}
+                >
+                  <div className="flex items-center space-x-2.5">
+                    <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#00e599]' : 'text-[#4e6a5b]'}`} />
+                    <span className="text-[11px] font-semibold">{item.label}</span>
+                  </div>
+                  {item.badge && (
+                    <span className={`text-[9px] px-1.5 py-0.5 rounded font-mono ${
+                      isActive 
+                        ? 'bg-[#00e599]/25 text-[#00e599] border border-[#00e599]/40' 
+                        : item.badge === 'ON' || item.badge === 'REALTIME'
+                        ? 'bg-[#10b981]/15 text-[#10b981] border border-[#10b981]/25'
+                        : 'bg-[#030906] text-[#4e6a5b] border border-[#143526]'
+                    }`}>
+                      {item.badge}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </nav>
+        </div>
       </div>
 
       {/* Bottom System Telemetry Summary */}
-      <div className="p-3.5 border-t border-[#143526] bg-[#050c08] space-y-2 font-mono text-[11px]">
+      <div className="p-3.5 border-t border-[#143526] bg-[#040a07] space-y-2 font-mono text-[11px]">
         <div className="flex justify-between items-center text-[#8ba695]">
           <span className="text-[9px] text-[#4e6a5b] uppercase tracking-wider">HARDWARE I/O</span>
           <span className="text-[#00e599] flex items-center space-x-1.5 font-semibold">
             <span className="w-1.5 h-1.5 rounded-full bg-[#00e599] animate-pulse shadow-[0_0_6px_#00e599]" />
-            <span>USB PnP</span>
+            <span>USB PnP ACTIVE</span>
           </span>
         </div>
         <div className="flex justify-between items-center text-[#8ba695]">
           <span className="text-[9px] text-[#4e6a5b] uppercase tracking-wider">DSP LOAD</span>
-          <span className="text-[#f0fdf4] font-semibold">{store.telemetry.cpuLoadPercent.toFixed(1)}%</span>
+          <span className="text-[#f0fdf4] font-semibold tabular-nums">{store.telemetry.cpuLoadPercent.toFixed(1)}%</span>
         </div>
         <div className="flex justify-between items-center text-[#8ba695]">
           <span className="text-[9px] text-[#4e6a5b] uppercase tracking-wider">NOISE RED</span>
-          <span className="text-[#00e599] font-bold">-{store.telemetry.noiseReductionDb} dB</span>
+          <span className="text-[#00e599] font-bold tabular-nums">-{store.telemetry.noiseReductionDb} dB</span>
         </div>
       </div>
     </aside>

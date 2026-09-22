@@ -8,7 +8,7 @@ export type ActiveView =
   | 'system'
   | 'hardware3d';
 
-export type ProcessingMode = 'rnnnoise' | 'spectral' | 'hybrid' | 'bypass';
+export type ProcessingMode = 'deepfilternet3' | 'spectral' | 'hybrid' | 'bypass';
 
 export type NoiseEnvironment = 'battlefield' | 'helicopter' | 'armored_vehicle' | 'urban_combat' | 'wind_storm' | 'clean_mic';
 

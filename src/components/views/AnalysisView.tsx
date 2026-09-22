@@ -78,7 +78,7 @@ export const AnalysisView: React.FC<AnalysisViewProps> = ({ store }) => {
                   className="w-1/2 bg-[#143526] rounded-t-[2px] border-t border-[#1e4a36]"
                   title={`Passive Seal: ${item.passive} dB`}
                 />
-                {/* Active RNNNoise + ANC bar */}
+                {/* Active DeepFilterNet3 + ANC bar */}
                 <div 
                   style={{ height: `${(item.active / 45) * 100}%` }} 
                   className="w-1/2 bg-[#00e599] rounded-t-[2px] shadow-[0_0_8px_rgba(0,229,153,0.3)]"
@@ -98,7 +98,7 @@ export const AnalysisView: React.FC<AnalysisViewProps> = ({ store }) => {
           </div>
           <div className="flex items-center space-x-2">
             <span className="w-2.5 h-2.5 bg-[#00e599] rounded-[2px] shadow-[0_0_4px_#00e599]" />
-            <span className="text-[#00e599]">TOTAL NOISE REDUCTION (ACTIVE RNNNOISE + SEAL)</span>
+            <span className="text-[#00e599]">TOTAL NOISE REDUCTION (ACTIVE DEEPFILTERNET3 + SEAL)</span>
           </div>
         </div>
       </div>

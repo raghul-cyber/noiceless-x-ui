@@ -140,7 +140,7 @@ export const SignalPulseFlow: React.FC = () => {
         {[0, 1, 2].map((idx) => (
           <mesh key={idx}>
             <sphereGeometry args={[0.015, 14, 14]} />
-            <meshBasicMaterial color="#00e5ff" transparent opacity={0.9} />
+            <meshBasicMaterial color="#00e599" transparent opacity={0.9} />
           </mesh>
         ))}
       </group>

@@ -53,8 +53,8 @@ export const SpeakerDriver: React.FC<SpeakerDriverProps> = ({ side = 'left', exp
       <mesh position={[dir * 0.08, 0, 0]} rotation={[0, Math.PI / 2, 0]} castShadow={!isXRay}>
         <cylinderGeometry args={[0.22, 0.22, 0.08, 24]} />
         <meshStandardMaterial
-          color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color(TACTICAL_COLORS.steelMetal)}
-          emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+          color={isXRay ? new THREE.Color('#00e599') : new THREE.Color(TACTICAL_COLORS.steelMetal)}
+          emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
           emissiveIntensity={isXRay ? 1.8 : 0}
           roughness={isXRay ? 0.2 : 0.35}
           metalness={0.9}
@@ -103,8 +103,8 @@ export const SpeakerDriver: React.FC<SpeakerDriverProps> = ({ side = 'left', exp
       <mesh ref={diaphragmRef} position={[dir * -0.02, 0, 0]} rotation={[0, Math.PI / 2, 0]} castShadow={!isXRay}>
         <sphereGeometry args={[0.26, 24, 16, 0, Math.PI * 2, 0, Math.PI * 0.45]} />
         <meshStandardMaterial
-          color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#3b4554')}
-          emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+          color={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#3b4554')}
+          emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
           emissiveIntensity={isXRay ? 1.0 : 0}
           metalness={0.8}
           roughness={0.25}
@@ -118,8 +118,8 @@ export const SpeakerDriver: React.FC<SpeakerDriverProps> = ({ side = 'left', exp
         <mesh key={idx} rotation={[0, Math.PI / 2, 0]}>
           <torusGeometry args={[radius, 0.007, 8, 32]} />
           <meshStandardMaterial
-            color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#1f2633')}
-            emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+            color={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#1f2633')}
+            emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
             emissiveIntensity={isXRay ? 0.8 : 0}
             roughness={0.8}
           />

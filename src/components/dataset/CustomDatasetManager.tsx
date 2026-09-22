@@ -259,7 +259,7 @@ export const CustomDatasetManager: React.FC<CustomDatasetManagerProps> = ({
             <div className="p-2 rounded-lg bg-[#030906] border border-[#143526]">
               <span className="text-[#8ba695] block text-[8px]">SNR GAIN</span>
               <span className="text-xs font-bold text-[#10b981] font-mono">+{customDataset.summary.avgSnrGain} dB</span>
-              <span className="text-[8px] text-[#4e6a5b] block mt-0.5">RNNNoise Gain</span>
+              <span className="text-[8px] text-[#4e6a5b] block mt-0.5">DeepFilterNet3 Gain</span>
             </div>
           </div>
 

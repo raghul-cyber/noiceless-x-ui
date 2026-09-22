@@ -33,7 +33,7 @@ export const TelemetryGrid: React.FC<TelemetryGridProps> = ({ store }) => {
     {
       id: 'noise_reduction',
       label: 'NOISE REDUCTION',
-      sublabel: 'RNNNOISE ATTENUATION',
+      sublabel: 'DEEPFILTERNET3 ATTENUATION',
       value: `${store.telemetry.noiseReductionDb.toFixed(1)} dB`,
       color: 'text-[#00e599]',
       icon: ArrowDownRight,

@@ -159,7 +159,7 @@ class TacticalAudioEngine {
     this.filterLow.type = 'lowpass';
     this.filterLow.frequency.setValueAtTime(6500, this.ctx.currentTime);
 
-    // 3. Spectral subtraction / RNNNoise dynamic gain
+    // 3. Spectral subtraction / DeepFilterNet3 dynamic gain
     this.suppressionGain = this.ctx.createGain();
     this.suppressionGain.gain.setValueAtTime(1.2, this.ctx.currentTime);
 

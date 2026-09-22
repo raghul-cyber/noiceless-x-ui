@@ -95,7 +95,7 @@ export const LiveView: React.FC<LiveViewProps> = ({ store }) => {
             }`}
           >
             <Zap className="w-3.5 h-3.5" />
-            <span>{store.isProcessingActive ? 'RNNNOISE: ENGAGED' : 'BYPASS ACTIVE'}</span>
+            <span>{store.isProcessingActive ? 'DEEPFILTERNET3: ENGAGED' : 'BYPASS ACTIVE'}</span>
           </button>
         </div>
       </div>

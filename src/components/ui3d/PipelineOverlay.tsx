@@ -29,7 +29,7 @@ export const PipelineOverlay: React.FC<PipelineOverlayProps> = ({ standalone = f
             YAMNet AI + FxLMS
           </span>
           <span className="text-[9px] font-mono text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded border border-[#10b981]/30">
-            RNNNoise DSP
+            DeepFilterNet3
           </span>
         </div>
       </div>
@@ -97,7 +97,7 @@ export const PipelineOverlay: React.FC<PipelineOverlayProps> = ({ standalone = f
         <div className="flex items-center justify-between mb-1.5">
           <span className="text-[9px] font-bold text-[#10b981] uppercase tracking-wider flex items-center gap-1">
             <Volume2 className="w-3 h-3 text-[#10b981]" />
-            PATH B: SPEECH ENHANCEMENT &amp; TACTICAL COMMS (RNNNOISE / ONNX)
+            PATH B: SPEECH ENHANCEMENT &amp; TACTICAL COMMS (DEEPFILTERNET3 / ONNX)
           </span>
           <span className="text-[8px] text-[#4e6a5b]">EMBEDDED RASPBERRY PI</span>
         </div>
@@ -123,7 +123,7 @@ export const PipelineOverlay: React.FC<PipelineOverlayProps> = ({ standalone = f
               <Cpu className="w-2.5 h-2.5" />
               <span>RASPBERRY PI</span>
             </div>
-            <div className="text-[#8ba695] text-[8px] truncate">RNNNoise Neural Engine</div>
+            <div className="text-[#8ba695] text-[8px] truncate">DeepFilterNet3 AI</div>
           </div>
 
           <ArrowRight className="w-3 h-3 text-[#10b981]/70 flex-shrink-0" />

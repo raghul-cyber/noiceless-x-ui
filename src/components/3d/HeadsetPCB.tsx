@@ -53,8 +53,8 @@ export const HeadsetPCB: React.FC<HeadsetPCBProps> = ({ explodeDistance = 0 }) =
       <mesh position={[-0.016, 0.08, 0]} rotation={[0, Math.PI / 2, 0]} castShadow={!isXRay}>
         <boxGeometry args={[0.15, 0.15, 0.02]} />
         <meshStandardMaterial
-          color={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#151820')}
-          emissive={isXRay ? new THREE.Color('#00e5ff') : new THREE.Color('#000000')}
+          color={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#151820')}
+          emissive={isXRay ? new THREE.Color('#00e599') : new THREE.Color('#000000')}
           emissiveIntensity={isXRay ? 1.5 : 0}
           roughness={0.3}
           metalness={0.8}
