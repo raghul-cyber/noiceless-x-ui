@@ -15,15 +15,15 @@ export const App: React.FC = () => {
   const store = useAppStore();
 
   return (
-    <div className="w-screen h-screen flex flex-col bg-[#06080d] text-slate-200 overflow-hidden font-sans">
-      {/* Top Professional Audio Engineering Header Bar */}
+    <div className="w-screen h-screen flex flex-col bg-[#040a07] text-[#f0fdf4] overflow-hidden font-sans select-none">
+      {/* Top Tactical Audio Engineering Header Bar */}
       <HeaderBar store={store} />
 
       {/* Main Studio Body: Fixed Left Navigation Rail + Active Workstation View */}
       <div className="flex-1 flex overflow-hidden">
         <SidebarNav store={store} />
 
-        <main className="flex-1 overflow-hidden relative bg-[#080b11]">
+        <main className="flex-1 overflow-hidden relative bg-[#040a07]">
           {store.activeView === 'overview' && <OverviewView store={store} />}
           {store.activeView === 'live' && <LiveView store={store} />}
           {store.activeView === 'hardware3d' && <Hardware3DView />}

@@ -91,17 +91,17 @@ export const WorkflowController: React.FC = () => {
 
   return (
     <header className="absolute top-2 left-3 right-3 z-30 pointer-events-auto select-none font-mono">
-      <div className="tactical-glass px-3 py-1.5 rounded-xl border border-[#00e5ff]/25 shadow-xl flex items-center justify-between gap-2">
+      <div className="bg-[#08140e]/95 border border-[#143526] px-3 py-1.5 rounded-xl shadow-2xl backdrop-blur-xl flex items-center justify-between gap-2">
         {/* Left: Brand & Active Stage Badge */}
         <div className="flex items-center gap-2 flex-shrink-0">
-          <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff]">
+          <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-[#00e599]/10 border border-[#00e599]/30 text-[#00e599]">
             <Activity className="w-3.5 h-3.5" />
             <span className="font-bold text-[11px] tracking-wider">NOISELESS-X</span>
           </div>
-          <div className="hidden lg:flex items-center gap-1.5 text-[10px] text-slate-300">
-            <span className="text-slate-500">|</span>
-            <span className="text-emerald-400 font-bold">STAGE {workflowStep}/7:</span>
-            <span className="text-white font-semibold truncate max-w-[180px]">{activeStage.title}</span>
+          <div className="hidden lg:flex items-center gap-1.5 text-[10px] text-[#8ba695]">
+            <span className="text-[#4e6a5b]">|</span>
+            <span className="text-[#00e599] font-bold">STAGE {workflowStep}/7:</span>
+            <span className="text-[#f0fdf4] font-semibold truncate max-w-[180px]">{activeStage.title}</span>
           </div>
         </div>
 
@@ -117,27 +117,27 @@ export const WorkflowController: React.FC = () => {
                 onClick={() => viewerStore.setWorkflowStep(stage.step)}
                 className={`relative group flex items-center gap-1 px-2 py-1 rounded-lg border text-[10px] transition-all whitespace-nowrap overflow-hidden ${
                   isCurrent
-                    ? 'bg-[#091526] border-[#00e5ff] text-white shadow-[0_0_10px_rgba(0,229,255,0.3)] font-bold'
+                    ? 'bg-[#00e599]/15 border-[#00e599] text-[#f0fdf4] shadow-[0_0_10px_rgba(0,229,153,0.3)] font-bold'
                     : isCompleted
-                    ? 'bg-[#080d17]/70 border-slate-700/60 text-slate-300 hover:text-white'
-                    : 'bg-[#060910]/70 border-slate-800 text-slate-500 hover:text-slate-300'
+                    ? 'bg-[#05110a] border-[#143526] text-[#8ba695] hover:text-[#f0fdf4]'
+                    : 'bg-[#030906] border-[#143526] text-[#4e6a5b] hover:text-[#8ba695]'
                 }`}
                 title={stage.title}
               >
                 {/* Progress bar fill for active stage when playing */}
                 {isCurrent && isWorkflowPlaying && (
                   <div
-                    className="absolute top-0 left-0 bottom-0 bg-[#00e5ff]/20 transition-all duration-75 pointer-events-none"
+                    className="absolute top-0 left-0 bottom-0 bg-[#00e599]/20 transition-all duration-75 pointer-events-none"
                     style={{ width: `${stepProgress}%` }}
                   />
                 )}
                 <span
                   className={`w-3.5 h-3.5 rounded-full flex items-center justify-center text-[8px] font-bold relative z-10 ${
                     isCurrent
-                      ? 'bg-[#00e5ff] text-black'
+                      ? 'bg-[#00e599] text-black'
                       : isCompleted
-                      ? 'bg-slate-700 text-slate-200'
-                      : 'bg-slate-800 text-slate-500'
+                      ? 'bg-[#143526] text-[#00e599]'
+                      : 'bg-[#08140e] text-[#4e6a5b]'
                   }`}
                 >
                   {stage.step}
@@ -155,7 +155,7 @@ export const WorkflowController: React.FC = () => {
           {/* Step Backwards */}
           <button
             onClick={() => viewerStore.prevWorkflowStep()}
-            className="p-1 rounded bg-[#0d1420] border border-[#1e293b] text-slate-300 hover:text-white hover:border-[#00e5ff]/40 transition-all"
+            className="p-1 rounded bg-[#030906] border border-[#143526] text-[#8ba695] hover:text-[#f0fdf4] hover:border-[#00e599]/40 transition-all"
             title="Previous Stage"
           >
             <ChevronLeft className="w-3.5 h-3.5" />
@@ -166,7 +166,7 @@ export const WorkflowController: React.FC = () => {
             onClick={() => viewerStore.toggleWorkflowPlaying()}
             className={`flex items-center gap-1 px-2.5 py-1 rounded text-[10px] font-bold transition-all ${
               isWorkflowPlaying
-                ? 'bg-[#00e5ff]/20 text-[#00e5ff] border border-[#00e5ff]'
+                ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]'
                 : 'bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30'
             }`}
             title={isWorkflowPlaying ? 'Pause Workflow Tour' : 'Play Workflow Tour'}
@@ -178,7 +178,7 @@ export const WorkflowController: React.FC = () => {
           {/* Step Forward */}
           <button
             onClick={() => viewerStore.nextWorkflowStep()}
-            className="p-1 rounded bg-[#0d1420] border border-[#1e293b] text-slate-300 hover:text-white hover:border-[#00e5ff]/40 transition-all"
+            className="p-1 rounded bg-[#030906] border border-[#143526] text-[#8ba695] hover:text-[#f0fdf4] hover:border-[#00e599]/40 transition-all"
             title="Next Stage"
           >
             <ChevronRight className="w-3.5 h-3.5" />
@@ -190,7 +190,7 @@ export const WorkflowController: React.FC = () => {
               const nextSpeed = workflowSpeed === 1 ? 2 : workflowSpeed === 2 ? 0.5 : 1;
               viewerStore.setWorkflowSpeed(nextSpeed);
             }}
-            className="px-1.5 py-1 rounded bg-[#0d1420] border border-[#1e293b] text-[9px] text-slate-300 hover:text-white"
+            className="px-1.5 py-1 rounded bg-[#030906] border border-[#143526] text-[9px] text-[#8ba695] hover:text-[#f0fdf4]"
             title="Cycle Speed"
           >
             {workflowSpeed}x
@@ -201,12 +201,12 @@ export const WorkflowController: React.FC = () => {
             onClick={handleToggleAudioProbe}
             className={`flex items-center gap-1 px-2 py-1 rounded text-[9px] font-bold border transition-all ${
               audioProbe !== 'OFF'
-                ? 'bg-emerald-500/25 text-emerald-300 border-emerald-400'
-                : 'bg-[#0d1420] text-slate-400 border-[#1e293b] hover:text-white'
+                ? 'bg-[#00e599]/25 text-[#00e599] border-[#00e599]'
+                : 'bg-[#030906] text-[#8ba695] border-[#143526] hover:text-[#f0fdf4]'
             }`}
             title="Listen to Real-Time Synthesizer Sound"
           >
-            {audioProbe !== 'OFF' ? <Volume2 className="w-3 h-3 text-emerald-300" /> : <VolumeX className="w-3 h-3" />}
+            {audioProbe !== 'OFF' ? <Volume2 className="w-3 h-3 text-[#00e599]" /> : <VolumeX className="w-3 h-3" />}
             <span className="hidden sm:inline">{audioProbe !== 'OFF' ? audioProbe : 'PROBE'}</span>
           </button>
 
@@ -221,16 +221,16 @@ export const WorkflowController: React.FC = () => {
             }}
             className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold transition-all ${
               showHud && activeHudTab === 'dataset'
-                ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-400'
+                ? 'bg-[#00e599]/25 text-[#00e599] border border-[#00e599]'
                 : customDataset
-                ? 'bg-emerald-950/40 text-emerald-300 border border-emerald-500/40 hover:border-emerald-400'
-                : 'bg-[#0d1420] text-slate-300 border border-[#1e293b] hover:border-emerald-500/50 hover:text-white'
+                ? 'bg-[#00e599]/10 text-[#00e599] border border-[#00e599]/40 hover:border-[#00e599]'
+                : 'bg-[#030906] text-[#8ba695] border border-[#143526] hover:border-[#00e599]/50 hover:text-[#f0fdf4]'
             }`}
             title="Upload or Process Custom CSV Dataset"
           >
-            <Database className="w-3 h-3 text-emerald-400" />
+            <Database className="w-3 h-3 text-[#00e599]" />
             <span className="hidden md:inline">{customDataset ? 'CSV ACTIVE' : 'CSV DATA'}</span>
-            {customDataset && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />}
+            {customDataset && <span className="w-1.5 h-1.5 rounded-full bg-[#00e599] animate-pulse" />}
           </button>
 
           {/* Oscilloscope / Waveforms Drawer Toggle */}
@@ -244,8 +244,8 @@ export const WorkflowController: React.FC = () => {
             }}
             className={`flex items-center gap-1 px-2.5 py-1 rounded text-[10px] font-bold transition-all ${
               showHud && activeHudTab === 'oscilloscope'
-                ? 'bg-cyan-500/25 text-[#00e5ff] border border-[#00e5ff]'
-                : 'bg-[#0d1420] text-slate-300 border border-[#1e293b] hover:border-slate-500 hover:text-white'
+                ? 'bg-[#00e599]/25 text-[#00e599] border border-[#00e599]'
+                : 'bg-[#030906] text-[#8ba695] border border-[#143526] hover:border-[#1e4d38] hover:text-[#f0fdf4]'
             }`}
             title="Toggle DSP Waveforms and FFT Oscilloscope"
           >

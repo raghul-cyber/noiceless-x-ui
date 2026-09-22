@@ -6,53 +6,81 @@
   color-scheme: dark;
 }
 
+::selection {
+  background-color: #00e599;
+  color: #040a07;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #06080d;
-  color: #e2e8f0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #040a07;
+  color: #f0fdf4;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   user-select: none;
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Custom engineering scrollbar */
+/* Custom Tactical Engineering Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #090c13;
+  background: #06100b;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e2638;
-  border-radius: 3px;
+  background: #143526;
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a344d;
+  background: #1e4a36;
+}
+
+/* Tabular numbers for telemetry, clocks and audio readouts */
+.tabular-nums, .font-mono {
+  font-variant-numeric: tabular-nums slashed-zero;
 }
 
 /* Fine technical grid pattern for oscilloscopes & backdrops */
 .bg-tech-grid {
   background-size: 20px 20px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 229, 153, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 229, 153, 0.03) 1px, transparent 1px);
+}
+
+.bg-scope-raster {
+  background-image: 
+    linear-gradient(to right, rgba(20, 53, 38, 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 53, 38, 0.35) 1px, transparent 1px);
+  background-size: 16px 16px;
 }
 
 .bg-scope-grid {
   background-size: 16px 16px;
   background-image: 
-    linear-gradient(to right, rgba(0, 212, 170, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 212, 170, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 229, 153, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 229, 153, 0.05) 1px, transparent 1px);
+}
+
+/* Precision tactile glow effects */
+.tactile-glow {
+  box-shadow: 0 0 10px rgba(0, 229, 153, 0.25);
+}
+
+.tactile-glow-heavy {
+  box-shadow: 0 0 16px rgba(0, 229, 153, 0.45);
 }
 
 /* Precision audio knob and slider resets */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
-  background: #141a27;
-  border-radius: 4px;
+  background: #0b1a13;
+  border: 1px solid #143526;
+  border-radius: 2px;
   height: 6px;
   outline: none;
 }
@@ -63,17 +91,24 @@ input[type="range"]::-webkit-slider-thumb {
   width: 14px;
   height: 14px;
   border-radius: 2px;
-  background: #00d4aa;
+  background: #00e599;
   cursor: pointer;
-  border: 1px solid #06080d;
-  box-shadow: 0 0 4px rgba(0, 212, 170, 0.4);
+  border: 1px solid #040a07;
+  box-shadow: 0 0 6px rgba(0, 229, 153, 0.4);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 229, 153, 0.7);
 }
 
 input[type="range"]::-moz-range-thumb {
   width: 14px;
   height: 14px;
   border-radius: 2px;
-  background: #00d4aa;
+  background: #00e599;
   cursor: pointer;
-  border: 1px solid #06080d;
+  border: 1px solid #040a07;
+  box-shadow: 0 0 6px rgba(0, 229, 153, 0.4);
 }

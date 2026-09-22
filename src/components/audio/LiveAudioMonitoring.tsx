@@ -47,13 +47,13 @@ export const LiveAudioMonitoring: React.FC<LiveAudioMonitoringProps> = ({ store 
           const cvs = outputCanvasRef.current;
           const ctx = cvs.getContext('2d');
           if (ctx) {
-            const outColor = store.isProcessingActive ? '#00d4aa' : '#f59e0b';
+            const outColor = store.isProcessingActive ? '#00e599' : '#f59e0b';
             drawOscilloscope(
               ctx, 
               cvs.width, 
               cvs.height, 
               outputBuffer, 
-              outColor, // Signal Cyan / Pure Clean or Amber if bypassed
+              outColor, // Tactical Mint / Pure Clean or Amber if bypassed
               '#10b981',
               false,
               store.telemetry.outputDb
@@ -79,12 +79,12 @@ export const LiveAudioMonitoring: React.FC<LiveAudioMonitoringProps> = ({ store 
     isInput: boolean,
     dbLevel: number
   ) => {
-    // Clear background
-    ctx.fillStyle = '#080b11';
+    // Clear background to recessed well
+    ctx.fillStyle = '#020604';
     ctx.fillRect(0, 0, width, height);
 
     // Draw precision oscilloscope graticule grid
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+    ctx.strokeStyle = 'rgba(20, 53, 38, 0.6)';
     ctx.lineWidth = 1;
 
     // Horizontal division lines (-18dB, -12dB, -6dB, 0dB, +6dB)
@@ -110,88 +110,101 @@ export const LiveAudioMonitoring: React.FC<LiveAudioMonitoringProps> = ({ store 
     }
     ctx.setLineDash([]); // Reset line dash
 
-    // Center reference zero-crossing line
+    // Center reference zero-crossing line with subtle phosphor glow
     const midY = height / 2;
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+    ctx.strokeStyle = 'rgba(0, 229, 153, 0.18)';
     ctx.beginPath();
     ctx.moveTo(0, midY);
     ctx.lineTo(width, midY);
     ctx.stroke();
 
-    // Draw Waveform Glow Layer (subtle, clean, not blurry neon)
+    // Draw subtle area fill below waveform
+    ctx.beginPath();
+    const sliceWidth = width / buffer.length;
+    let x = 0;
+    for (let i = 0; i < buffer.length; i++) {
+      const v = buffer[i] * 1.8;
+      const y = midY + v * (height * 0.42);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+      x += sliceWidth;
+    }
+    ctx.lineTo(width, midY);
+    ctx.lineTo(0, midY);
+    ctx.closePath();
+    ctx.fillStyle = isInput 
+      ? 'rgba(245, 158, 11, 0.05)' 
+      : (store.isProcessingActive ? 'rgba(0, 229, 153, 0.08)' : 'rgba(245, 158, 11, 0.05)');
+    ctx.fill();
+
+    // Draw main Waveform line
     ctx.lineWidth = 1.5;
     ctx.strokeStyle = primaryColor;
     ctx.beginPath();
-
-    const sliceWidth = width / buffer.length;
-    let x = 0;
-
+    x = 0;
     for (let i = 0; i < buffer.length; i++) {
-      const v = buffer[i] * 1.8; // Normalized gain scaling
+      const v = buffer[i] * 1.8;
       const y = midY + v * (height * 0.42);
-
-      if (i === 0) {
-        ctx.moveTo(x, y);
-      } else {
-        ctx.lineTo(x, y);
-      }
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
       x += sliceWidth;
     }
     ctx.stroke();
 
     // Draw dBFS level meter bar on the right edge
-    const meterWidth = 6;
+    const meterWidth = 5;
     const meterX = width - meterWidth - 4;
     const normLevel = Math.max(0, Math.min(1, (dbLevel + 60) / 60)); // -60dB to 0dB range
     const meterHeight = height * 0.85;
     const meterY = midY - meterHeight / 2;
 
-    ctx.fillStyle = '#141a26';
+    ctx.fillStyle = '#06110b';
     ctx.fillRect(meterX, meterY, meterWidth, meterHeight);
 
     const fillHeight = meterHeight * normLevel;
     const fillY = meterY + (meterHeight - fillHeight);
 
     const gradient = ctx.createLinearGradient(0, meterY + meterHeight, 0, meterY);
-    gradient.addColorStop(0, '#10b981');
-    gradient.addColorStop(0.7, '#f59e0b');
-    gradient.addColorStop(1, '#ef4444');
+    gradient.addColorStop(0, '#059669');
+    gradient.addColorStop(0.65, '#00e599');
+    gradient.addColorStop(0.85, '#f59e0b');
+    gradient.addColorStop(1, '#ff3b5c');
 
     ctx.fillStyle = gradient;
     ctx.fillRect(meterX, fillY, meterWidth, fillHeight);
   };
 
   return (
-    <section className="bg-[#0b0e16] border border-[#182030] rounded-lg overflow-hidden flex flex-col">
+    <section className="bg-[#08140e] border border-[#143526] rounded-md overflow-hidden flex flex-col shadow-lg">
       {/* Panel Header */}
-      <div className="h-10 px-4 bg-[#090c13] border-b border-[#182030] flex items-center justify-between">
-        <div className="flex items-center space-x-3">
-          <Activity className="w-4 h-4 text-signal-cyan" />
-          <h2 className="text-xs font-mono font-bold tracking-widest text-slate-200 uppercase">
-            REAL-TIME AUDIO MONITORING
+      <div className="h-9 px-3.5 bg-[#0a1a12] border-b border-[#143526] flex items-center justify-between">
+        <div className="flex items-center space-x-2.5">
+          <Activity className="w-3.5 h-3.5 text-[#00e599]" />
+          <h2 className="text-[11px] font-mono font-bold tracking-widest text-[#f0fdf4] uppercase">
+            REAL-TIME AUDIO MONITORING // DUAL OSCILLOSCOPE
           </h2>
         </div>
 
         <div className="flex items-center space-x-3 font-mono text-[11px]">
-          <div className="flex items-center space-x-1 bg-[#121824] px-2 py-0.5 rounded border border-[#1e273a] text-slate-400">
-            <span>TIMEBASE:</span>
+          <div className="flex items-center space-x-1 bg-[#06100b] px-2 py-0.5 rounded-[2px] border border-[#143526] text-[#8ba695]">
+            <span className="text-[9px] text-[#4e6a5b]">SWEEP:</span>
             <button 
               onClick={() => setTimebaseMs(10)} 
-              className={`px-1 rounded ${timebaseMs === 10 ? 'text-signal-cyan font-bold' : 'hover:text-slate-200'}`}
+              className={`px-1 rounded-[2px] ${timebaseMs === 10 ? 'text-[#00e599] font-bold bg-[#00e599]/10' : 'hover:text-[#f0fdf4]'}`}
             >
               10ms
             </button>
-            <span>/</span>
+            <span className="text-[#143526]">/</span>
             <button 
               onClick={() => setTimebaseMs(25)} 
-              className={`px-1 rounded ${timebaseMs === 25 ? 'text-signal-cyan font-bold' : 'hover:text-slate-200'}`}
+              className={`px-1 rounded-[2px] ${timebaseMs === 25 ? 'text-[#00e599] font-bold bg-[#00e599]/10' : 'hover:text-[#f0fdf4]'}`}
             >
               25ms
             </button>
-            <span>/</span>
+            <span className="text-[#143526]">/</span>
             <button 
               onClick={() => setTimebaseMs(50)} 
-              className={`px-1 rounded ${timebaseMs === 50 ? 'text-signal-cyan font-bold' : 'hover:text-slate-200'}`}
+              className={`px-1 rounded-[2px] ${timebaseMs === 50 ? 'text-[#00e599] font-bold bg-[#00e599]/10' : 'hover:text-[#f0fdf4]'}`}
             >
               50ms
             </button>
@@ -199,38 +212,38 @@ export const LiveAudioMonitoring: React.FC<LiveAudioMonitoringProps> = ({ store 
 
           <button
             onClick={() => setIsFrozen(!isFrozen)}
-            className={`px-2 py-0.5 rounded border flex items-center space-x-1 ${
+            className={`px-2 py-0.5 rounded-[2px] border text-[11px] flex items-center space-x-1.5 transition-all ${
               isFrozen 
-                ? 'bg-signal-amber/20 border-signal-amber/40 text-signal-amber' 
-                : 'bg-[#121824] border-[#1e273a] text-slate-400 hover:text-slate-200'
+                ? 'bg-[#f59e0b]/20 border-[#f59e0b]/50 text-[#f59e0b]' 
+                : 'bg-[#06100b] border-[#143526] text-[#8ba695] hover:text-[#f0fdf4] hover:border-[#1e4a36]'
             }`}
             title="Freeze Oscilloscope Frame"
           >
             {isFrozen ? <Play className="w-3 h-3" /> : <Pause className="w-3 h-3" />}
-            <span>{isFrozen ? 'FROZEN' : 'LIVE'}</span>
+            <span className="font-semibold">{isFrozen ? 'FROZEN' : 'LIVE'}</span>
           </button>
         </div>
       </div>
 
       {/* Main Monitoring Body: Input Waveform + Processing Pipeline Node + Output Waveform */}
-      <div className="p-4 grid grid-cols-1 lg:grid-cols-[1fr_120px_1fr] gap-4 items-center">
+      <div className="p-3.5 grid grid-cols-1 lg:grid-cols-[1fr_120px_1fr] gap-3 items-center">
         {/* INPUT: NOISY AUDIO */}
-        <div className="border border-[#182030] rounded bg-[#07090e] p-3 flex flex-col space-y-2">
+        <div className="border border-[#143526] rounded-[3px] bg-[#040a07] p-3 flex flex-col space-y-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 rounded-full bg-signal-amber animate-pulse" />
-              <span className="font-mono text-xs font-bold text-slate-200 tracking-wider">
-                INPUT // NOISY AUDIO
+              <span className="w-2 h-2 rounded-full bg-[#f59e0b] animate-pulse" />
+              <span className="font-mono text-xs font-bold text-[#f0fdf4] tracking-wider">
+                CH-A // RAW NOISY INPUT
               </span>
             </div>
-            <div className="font-mono text-[11px] text-slate-400 flex items-center space-x-2">
-              <span className="text-slate-500">PEAK:</span>
-              <span className="text-signal-amber font-semibold">{store.telemetry.inputDb.toFixed(1)} dBFS</span>
+            <div className="font-mono text-[11px] text-[#8ba695] flex items-center space-x-2">
+              <span className="text-[#4e6a5b]">PEAK:</span>
+              <span className="text-[#f59e0b] font-semibold">{store.telemetry.inputDb.toFixed(1)} dBFS</span>
             </div>
           </div>
 
           {/* Oscilloscope Canvas */}
-          <div className="relative w-full h-36 bg-[#080b11] rounded overflow-hidden border border-[#141a26]">
+          <div className="relative w-full h-36 bg-[#020604] rounded-[2px] overflow-hidden border border-[#143526]">
             <canvas 
               ref={inputCanvasRef} 
               width={480} 
@@ -238,73 +251,73 @@ export const LiveAudioMonitoring: React.FC<LiveAudioMonitoringProps> = ({ store 
               className="w-full h-full block"
             />
             {/* Overlay Grid Coordinate Labels */}
-            <div className="absolute top-1.5 left-2 font-mono text-[9px] text-slate-600 pointer-events-none">
+            <div className="absolute top-1.5 left-2 font-mono text-[9px] text-[#4e6a5b] pointer-events-none">
               +6 dB
             </div>
-            <div className="absolute bottom-1.5 left-2 font-mono text-[9px] text-slate-600 pointer-events-none">
+            <div className="absolute bottom-1.5 left-2 font-mono text-[9px] text-[#4e6a5b] pointer-events-none">
               -60 dBFS
             </div>
-            <div className="absolute top-1.5 right-6 font-mono text-[9px] text-amber-500/80 pointer-events-none">
+            <div className="absolute top-1.5 right-6 font-mono text-[9px] text-[#f59e0b]/80 pointer-events-none">
               NOISE FLOOR: -28 dB
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-[10px] font-mono text-slate-500">
+          <div className="flex items-center justify-between text-[10px] font-mono text-[#8ba695]">
             <span>TRANSDUCER: BOOM MIC CH1</span>
-            <span>BW: 20 Hz - 20 kHz</span>
+            <span className="text-[#4e6a5b]">BW: 20 Hz - 20 kHz</span>
           </div>
         </div>
 
         {/* PROCESSING PIPELINE VISUAL BRIDGE */}
-        <div className="flex flex-col items-center justify-center p-2 rounded bg-[#090c13] border border-[#182030] h-full space-y-3">
-          <div className="text-[10px] font-mono text-slate-500 uppercase tracking-widest text-center">
-            DSP PIPELINE
+        <div className="flex flex-col items-center justify-center p-2 rounded-[3px] bg-[#07130d] border border-[#143526] h-full space-y-2.5">
+          <div className="text-[9px] font-mono text-[#4e6a5b] uppercase tracking-widest text-center">
+            DSP BRIDGE
           </div>
 
           <div className="w-full flex items-center justify-center">
-            <div className={`p-2.5 rounded border text-center transition-all ${
+            <div className={`p-2.5 rounded-[2px] border text-center transition-all w-full ${
               store.isProcessingActive 
-                ? 'bg-signal-cyan/10 border-signal-cyan/40 text-signal-cyan shadow-sm' 
-                : 'bg-slate-800/40 border-slate-700 text-slate-400'
+                ? 'bg-[#0a2318] border-[#00e599]/40 text-[#00e599] shadow-[0_0_8px_rgba(0,229,153,0.15)]' 
+                : 'bg-[#1a1306] border-[#f59e0b]/40 text-[#f59e0b]'
             }`}>
-              <Zap className={`w-5 h-5 mx-auto mb-1 ${store.isProcessingActive ? 'animate-pulse text-signal-cyan' : 'text-slate-500'}`} />
-              <div className="font-mono text-[11px] font-bold">RNNNOISE</div>
-              <div className="text-[9px] font-mono text-slate-400 mt-0.5">22 BANDS</div>
+              <Zap className={`w-4 h-4 mx-auto mb-1 ${store.isProcessingActive ? 'animate-pulse text-[#00e599]' : 'text-[#f59e0b]'}`} />
+              <div className="font-mono text-[10px] font-bold">RNNNOISE</div>
+              <div className="text-[9px] font-mono opacity-80 mt-0.5">22 BANDS</div>
             </div>
           </div>
 
           {/* Animated Signal Direction Indicator */}
-          <div className="flex items-center space-x-1 text-slate-500">
-            <ArrowRight className={`w-4 h-4 ${store.isProcessingActive ? 'text-signal-cyan animate-pulse' : 'text-slate-600'}`} />
+          <div className="flex items-center space-x-1 text-[#4e6a5b]">
+            <ArrowRight className={`w-4 h-4 ${store.isProcessingActive ? 'text-[#00e599] animate-pulse' : 'text-[#4e6a5b]'}`} />
           </div>
 
           <div className="text-center font-mono">
-            <span className="text-[9px] text-slate-500 block">ATTENUATION</span>
-            <span className="text-xs font-bold text-signal-cyan">
+            <span className="text-[9px] text-[#4e6a5b] block">ATTENUATION</span>
+            <span className="text-xs font-bold text-[#00e599]">
               {store.isProcessingActive ? `-${store.telemetry.noiseReductionDb} dB` : '0 dB'}
             </span>
           </div>
         </div>
 
         {/* OUTPUT: ENHANCED AUDIO */}
-        <div className="border border-[#182030] rounded bg-[#07090e] p-3 flex flex-col space-y-2">
+        <div className="border border-[#143526] rounded-[3px] bg-[#040a07] p-3 flex flex-col space-y-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <span className={`w-2 h-2 rounded-full ${store.isProcessingActive ? 'bg-signal-cyan animate-pulse' : 'bg-signal-amber'}`} />
-              <span className="font-mono text-xs font-bold text-slate-200 tracking-wider">
-                OUTPUT // ENHANCED AUDIO
+              <span className={`w-2 h-2 rounded-full ${store.isProcessingActive ? 'bg-[#00e599] animate-pulse shadow-[0_0_6px_#00e599]' : 'bg-[#f59e0b]'}`} />
+              <span className="font-mono text-xs font-bold text-[#f0fdf4] tracking-wider">
+                CH-B // ENHANCED RESIDUAL
               </span>
             </div>
-            <div className="font-mono text-[11px] text-slate-400 flex items-center space-x-2">
-              <span className="text-slate-500">PEAK:</span>
-              <span className={`font-semibold ${store.isProcessingActive ? 'text-signal-cyan' : 'text-signal-amber'}`}>
+            <div className="font-mono text-[11px] text-[#8ba695] flex items-center space-x-2">
+              <span className="text-[#4e6a5b]">PEAK:</span>
+              <span className={`font-semibold ${store.isProcessingActive ? 'text-[#00e599]' : 'text-[#f59e0b]'}`}>
                 {store.telemetry.outputDb.toFixed(1)} dBFS
               </span>
             </div>
           </div>
 
           {/* Oscilloscope Canvas */}
-          <div className="relative w-full h-36 bg-[#080b11] rounded overflow-hidden border border-[#141a26]">
+          <div className="relative w-full h-36 bg-[#020604] rounded-[2px] overflow-hidden border border-[#143526]">
             <canvas 
               ref={outputCanvasRef} 
               width={480} 
@@ -312,20 +325,20 @@ export const LiveAudioMonitoring: React.FC<LiveAudioMonitoringProps> = ({ store 
               className="w-full h-full block"
             />
             {/* Overlay Grid Coordinate Labels */}
-            <div className="absolute top-1.5 left-2 font-mono text-[9px] text-slate-600 pointer-events-none">
+            <div className="absolute top-1.5 left-2 font-mono text-[9px] text-[#4e6a5b] pointer-events-none">
               +6 dB
             </div>
-            <div className="absolute bottom-1.5 left-2 font-mono text-[9px] text-slate-600 pointer-events-none">
+            <div className="absolute bottom-1.5 left-2 font-mono text-[9px] text-[#4e6a5b] pointer-events-none">
               -60 dBFS
             </div>
-            <div className="absolute top-1.5 right-6 font-mono text-[9px] text-signal-cyan/80 pointer-events-none">
+            <div className="absolute top-1.5 right-6 font-mono text-[9px] text-[#00e599]/90 pointer-events-none">
               {store.isProcessingActive ? 'CLEAN VOICE RESIDUAL' : 'BYPASS ACTIVE'}
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-[10px] font-mono text-slate-500">
-            <span>TARGET: EARPHONE / NETWORK STREAM</span>
-            <span>SNR: +{store.telemetry.snrOutput} dB</span>
+          <div className="flex items-center justify-between text-[10px] font-mono text-[#8ba695]">
+            <span>DEST: EARPIECE / MESH STREAM</span>
+            <span className="text-[#00e599] font-semibold">SNR: +{store.telemetry.snrOutput} dB</span>
           </div>
         </div>
       </div>

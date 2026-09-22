@@ -24,7 +24,7 @@ const LABEL_CONFIGS: Record<string, LabelConfig> = {
   externalRefMic: {
     shortName: 'EXT REF MIC',
     arrow: '←',
-    color: '#00e5ff', // Vibrant Electric Cyan
+    color: '#00e599', // Vibrant Tactical Mint
     offsetX: -0.16,
     offsetY: 0.01,
   },

@@ -13,23 +13,23 @@ export const ComponentInspector: React.FC = () => {
   if (!comp) return null;
 
   return (
-    <div className="absolute top-20 right-6 z-20 tactical-glass p-4 rounded-xl border border-[#00e5ff]/35 shadow-2xl w-80 animate-fade-in">
+    <div className="absolute top-20 right-6 z-20 bg-[#08140e]/95 border border-[#143526] p-4 rounded-xl shadow-2xl backdrop-blur-xl w-80 animate-fade-in font-mono select-none">
       {/* Header with Close */}
-      <div className="flex items-start justify-between pb-2 border-b border-[#1f2d42]">
+      <div className="flex items-start justify-between pb-2.5 border-b border-[#143526]">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded bg-[#00e5ff]/15 flex items-center justify-center text-[#00e5ff]">
+          <div className="w-6 h-6 rounded-md bg-[#00e599]/15 border border-[#00e599]/30 flex items-center justify-center text-[#00e599]">
             <Cpu className="w-3.5 h-3.5" />
           </div>
           <div>
-            <span className="text-[9px] font-mono text-[#00e5ff] tracking-widest uppercase">
+            <span className="text-[9px] text-[#00e599] tracking-widest uppercase font-bold">
               {comp.category}
             </span>
-            <h4 className="text-xs font-bold font-mono text-white tracking-wide">{comp.name}</h4>
+            <h4 className="text-xs font-bold text-[#f0fdf4] tracking-wide">{comp.name}</h4>
           </div>
         </div>
         <button
           onClick={() => viewerStore.selectComponent(null)}
-          className="text-slate-400 hover:text-white p-1 rounded hover:bg-slate-800"
+          className="text-[#8ba695] hover:text-[#f0fdf4] p-1 rounded hover:bg-[#0c1f15] transition-colors"
         >
           <X className="w-4 h-4" />
         </button>
@@ -37,37 +37,37 @@ export const ComponentInspector: React.FC = () => {
 
       {/* Role / Description */}
       <div className="my-2.5">
-        <span className="text-[9px] font-mono text-slate-400 uppercase tracking-wider block mb-0.5">
+        <span className="text-[9px] text-[#4e6a5b] uppercase tracking-wider block mb-0.5 font-bold">
           FUNCTIONAL ROLE:
         </span>
-        <p className="text-[11px] text-slate-200 leading-relaxed">{comp.role}</p>
+        <p className="text-[11px] text-[#8ba695] leading-relaxed">{comp.role}</p>
       </div>
 
       {/* Acoustic / Electrical I/O */}
-      <div className="space-y-1.5 my-2.5 p-2 rounded-lg bg-[#070a10] border border-[#172030] text-[10px] font-mono">
+      <div className="space-y-1.5 my-2.5 p-2.5 rounded-lg bg-[#030906] border border-[#143526] text-[10px]">
         <div>
-          <span className="text-slate-400">SIGNAL INPUT: </span>
-          <span className="text-amber-400">{comp.input}</span>
+          <span className="text-[#8ba695]">SIGNAL INPUT: </span>
+          <span className="text-amber-400 font-semibold">{comp.input}</span>
         </div>
         <div>
-          <span className="text-slate-400">SIGNAL OUTPUT: </span>
-          <span className="text-emerald-400">{comp.output}</span>
+          <span className="text-[#8ba695]">SIGNAL OUTPUT: </span>
+          <span className="text-[#10b981] font-semibold">{comp.output}</span>
         </div>
         <div>
-          <span className="text-slate-400">PHYSICAL CONNECTION: </span>
-          <span className="text-[#00e5ff]">{comp.connection}</span>
+          <span className="text-[#8ba695]">PHYSICAL BUS: </span>
+          <span className="text-[#00e599] font-semibold">{comp.connection}</span>
         </div>
       </div>
 
       {/* Military Technical Specifications */}
       <div>
-        <span className="text-[9px] font-mono text-slate-400 uppercase tracking-wider block mb-1">
+        <span className="text-[9px] text-[#4e6a5b] uppercase tracking-wider block mb-1 font-bold">
           ENGINEERING SPECIFICATIONS:
         </span>
-        <ul className="space-y-1 text-[10px] font-mono text-slate-300">
+        <ul className="space-y-1 text-[10px] text-[#8ba695]">
           {comp.technicalSpecs.map((spec, idx) => (
             <li key={idx} className="flex items-start gap-1.5">
-              <span className="text-[#00e5ff] font-bold">›</span>
+              <span className="text-[#00e599] font-bold">›</span>
               <span>{spec}</span>
             </li>
           ))}

@@ -10,26 +10,26 @@ export const TACTICAL_COLORS = {
   steelMetal: '#64748b',
   darkMetal: '#334155',
   goldContact: '#fbbf24',
-  pcbGreen: '#16a34a', // Authentic vibrant Raspberry Pi FR4 emerald soldermask
+  pcbGreen: '#10b981', // Authentic vibrant Raspberry Pi FR4 emerald soldermask
   copperTrace: '#d97706',
-  indicatorCyan: '#00e5ff',
+  indicatorCyan: '#00e599',
   warningAmber: '#ff9100',
   errorMagenta: '#d500f9',
-  cleanGreen: '#00e676',
+  cleanGreen: '#00e599',
   soldierSkin: '#c48e71',
   soldierCamo: '#2d3826',
   helmetOlive: '#262f22',
   goggleTint: '#0d1822',
-  xrayBlue: '#00e5ff',
-  xrayGlow: '#0077ff',
+  xrayBlue: '#00e599',
+  xrayGlow: '#00b377',
 };
 
 // Tactical PBR Material generator helpers
 export function createTacticalPolymer(isXRay = false, opacity = 1.0): THREE.MeshStandardMaterial {
   if (isXRay) {
     return new THREE.MeshStandardMaterial({
-      color: new THREE.Color('#031a2e'),
-      emissive: new THREE.Color('#00e5ff'),
+      color: new THREE.Color('#031a0e'),
+      emissive: new THREE.Color('#00e599'),
       emissiveIntensity: 0.4,
       roughness: 0.1,
       metalness: 0.8,
@@ -51,8 +51,8 @@ export function createTacticalPolymer(isXRay = false, opacity = 1.0): THREE.Mesh
 export function createGelCushionMaterial(isXRay = false): THREE.MeshStandardMaterial {
   if (isXRay) {
     return new THREE.MeshStandardMaterial({
-      color: new THREE.Color('#031a2e'),
-      emissive: new THREE.Color('#00e5ff'),
+      color: new THREE.Color('#031a0e'),
+      emissive: new THREE.Color('#00e599'),
       emissiveIntensity: 0.3,
       transparent: true,
       opacity: 0.18,
@@ -71,8 +71,8 @@ export function createGelCushionMaterial(isXRay = false): THREE.MeshStandardMate
 export function createBrushedSteel(isXRay = false): THREE.MeshStandardMaterial {
   if (isXRay) {
     return new THREE.MeshStandardMaterial({
-      color: new THREE.Color('#00e5ff'),
-      emissive: new THREE.Color('#00e5ff'),
+      color: new THREE.Color('#00e599'),
+      emissive: new THREE.Color('#00e599'),
       emissiveIntensity: 1.2,
       roughness: 0.2,
       metalness: 0.9,
@@ -88,8 +88,8 @@ export function createBrushedSteel(isXRay = false): THREE.MeshStandardMaterial {
 export function createDarkCoatedMetal(isXRay = false): THREE.MeshStandardMaterial {
   if (isXRay) {
     return new THREE.MeshStandardMaterial({
-      color: new THREE.Color('#031a2e'),
-      emissive: new THREE.Color('#0077ff'),
+      color: new THREE.Color('#031a0e'),
+      emissive: new THREE.Color('#00b377'),
       emissiveIntensity: 0.5,
       transparent: true,
       opacity: 0.2,
@@ -106,8 +106,8 @@ export function createDarkCoatedMetal(isXRay = false): THREE.MeshStandardMateria
 export function createPCBGreenMaterial(isXRay = false): THREE.MeshStandardMaterial {
   if (isXRay) {
     return new THREE.MeshStandardMaterial({
-      color: new THREE.Color('#00e676'),
-      emissive: new THREE.Color('#00e676'),
+      color: new THREE.Color('#00e599'),
+      emissive: new THREE.Color('#00e599'),
       emissiveIntensity: 1.8,
       roughness: 0.2,
       metalness: 0.3,
@@ -142,8 +142,8 @@ export function createGoldContact(isXRay = false): THREE.MeshStandardMaterial {
 export function createCableRubber(isXRay = false): THREE.MeshStandardMaterial {
   if (isXRay) {
     return new THREE.MeshStandardMaterial({
-      color: new THREE.Color('#00e5ff'),
-      emissive: new THREE.Color('#00e5ff'),
+      color: new THREE.Color('#00e599'),
+      emissive: new THREE.Color('#00e599'),
       emissiveIntensity: 1.5,
       roughness: 0.3,
       metalness: 0.5,
@@ -159,8 +159,8 @@ export function createCableRubber(isXRay = false): THREE.MeshStandardMaterial {
 export function createTacticalFabric(color = TACTICAL_COLORS.oliveDrab, isXRay = false): THREE.MeshStandardMaterial {
   if (isXRay) {
     return new THREE.MeshStandardMaterial({
-      color: new THREE.Color('#031a2e'),
-      emissive: new THREE.Color('#0077ff'),
+      color: new THREE.Color('#031a0e'),
+      emissive: new THREE.Color('#00b377'),
       emissiveIntensity: 0.35,
       transparent: true,
       opacity: 0.12,
@@ -178,14 +178,14 @@ export function createTacticalFabric(color = TACTICAL_COLORS.oliveDrab, isXRay =
 
 export function createGoggleLens(isXRay = false): THREE.MeshPhysicalMaterial {
   return new THREE.MeshPhysicalMaterial({
-    color: new THREE.Color(isXRay ? '#00e5ff' : TACTICAL_COLORS.goggleTint),
+    color: new THREE.Color(isXRay ? '#00e599' : TACTICAL_COLORS.goggleTint),
     roughness: 0.1,
     transmission: isXRay ? 0.95 : 0.82,
     thickness: 0.5,
     ior: 1.52,
     transparent: true,
     opacity: isXRay ? 0.3 : 0.85,
-    emissive: new THREE.Color(isXRay ? '#00e5ff' : '#000000'),
+    emissive: new THREE.Color(isXRay ? '#00e599' : '#000000'),
     emissiveIntensity: isXRay ? 0.5 : 0,
   });
 }

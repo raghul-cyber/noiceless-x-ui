@@ -40,8 +40,8 @@ export const OscilloscopePanel: React.FC<OscilloscopePanelProps> = ({ standalone
         if (ctx) {
           ctx.clearRect(0, 0, cvs.width, cvs.height);
 
-          // Grid lines
-          ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+          // Emerald Graticule Grid lines
+          ctx.strokeStyle = 'rgba(0, 229, 153, 0.06)';
           ctx.lineWidth = 1;
           for (let y = 20; y < cvs.height; y += 25) {
             ctx.beginPath();
@@ -64,8 +64,8 @@ export const OscilloscopePanel: React.FC<OscilloscopePanelProps> = ({ standalone
           }
           ctx.stroke();
 
-          // Trace B: 180° Inverted Anti-Noise (Sky Blue)
-          ctx.strokeStyle = '#00e5ff';
+          // Trace B: 180° Inverted Anti-Noise (Tactical Mint)
+          ctx.strokeStyle = '#00e599';
           ctx.lineWidth = 1.5;
           ctx.beginPath();
           for (let x = 0; x < cvs.width; x++) {
@@ -91,7 +91,7 @@ export const OscilloscopePanel: React.FC<OscilloscopePanelProps> = ({ standalone
           ctx.stroke();
 
           // Trace D: DeepFilterNet2 Processed Radio Output (Neon Green Speech)
-          ctx.strokeStyle = '#22c55e';
+          ctx.strokeStyle = '#10b981';
           ctx.lineWidth = 2;
           ctx.beginPath();
           for (let x = 0; x < cvs.width; x++) {
@@ -115,7 +115,7 @@ export const OscilloscopePanel: React.FC<OscilloscopePanelProps> = ({ standalone
         if (ctx) {
           ctx.clearRect(0, 0, cvs.width, cvs.height);
 
-          ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+          ctx.strokeStyle = 'rgba(0, 229, 153, 0.08)';
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(0, cvs.height / 2);
@@ -136,8 +136,8 @@ export const OscilloscopePanel: React.FC<OscilloscopePanelProps> = ({ standalone
           }
           ctx.stroke();
 
-          // 180° Anti-Noise (Dotted Blue)
-          ctx.strokeStyle = '#00e5ff';
+          // 180° Anti-Noise (Dotted Mint)
+          ctx.strokeStyle = '#00e599';
           ctx.beginPath();
           for (let x = 0; x < cvs.width; x++) {
             const y = cvs.height / 2 + (ancActive ? Math.sin(x * 0.06 + t + Math.PI) * amp * 0.97 : 0);
@@ -185,7 +185,7 @@ export const OscilloscopePanel: React.FC<OscilloscopePanelProps> = ({ standalone
 
             // Gradient fill
             const grad = ctx.createLinearGradient(0, cvs.height, 0, y);
-            grad.addColorStop(0, '#00e5ff');
+            grad.addColorStop(0, '#00e599');
             grad.addColorStop(1, ancActive ? '#10b981' : '#f43f5e');
 
             ctx.fillStyle = grad;
@@ -207,28 +207,30 @@ export const OscilloscopePanel: React.FC<OscilloscopePanelProps> = ({ standalone
   }, [activeScopeView, noiseScenario, noiseIntensity, ancActive, voiceActive, simulationRunning]);
 
   const containerClass = standalone
-    ? 'absolute bottom-24 right-6 z-20 tactical-glass p-3.5 rounded-xl border border-[#00e5ff]/25 shadow-xl max-w-md pointer-events-auto'
-    : 'p-3 rounded-xl bg-[#090e17]/80 border border-[#1e293b] w-full';
+    ? 'absolute bottom-24 right-6 z-20 bg-[#08140e]/95 border border-[#143526] p-3.5 rounded-xl shadow-2xl max-w-md pointer-events-auto backdrop-blur-xl font-mono select-none'
+    : 'p-3 rounded-xl bg-[#08140e] border border-[#143526] w-full font-mono select-none';
 
   return (
     <div className={containerClass}>
       {/* Header with Sub-views */}
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-          <Activity className="w-4 h-4 text-[#00e5ff]" />
-          <h3 className="font-tech text-xs tracking-wider text-slate-200 font-bold uppercase">
+          <div className="w-5 h-5 rounded bg-[#00e599]/10 border border-[#00e599]/30 flex items-center justify-center text-[#00e599]">
+            <Activity className="w-3 h-3" />
+          </div>
+          <h3 className="text-xs tracking-wider text-[#f0fdf4] font-bold uppercase">
             REAL-TIME DSP OSCILLOSCOPE
           </h3>
         </div>
 
         {/* View Switcher: Multi-Trace | Null Zone | FFT */}
-        <div className="flex items-center bg-[#070c14] p-0.5 rounded-lg border border-[#1e293b] text-[9px] font-mono">
+        <div className="flex items-center bg-[#030906] p-0.5 rounded-lg border border-[#143526] text-[9px] font-mono">
           <button
             onClick={() => setActiveScopeView('multi')}
             className={`px-2 py-0.5 rounded font-bold transition-all ${
               activeScopeView === 'multi'
-                ? 'bg-[#00e5ff]/20 text-[#00e5ff] border border-[#00e5ff]/40'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]/40'
+                : 'text-[#8ba695] hover:text-[#f0fdf4]'
             }`}
           >
             4-CHANNEL
@@ -238,17 +240,17 @@ export const OscilloscopePanel: React.FC<OscilloscopePanelProps> = ({ standalone
             className={`px-2 py-0.5 rounded font-bold transition-all ${
               activeScopeView === 'nullZone'
                 ? 'bg-purple-500/20 text-purple-300 border border-purple-400/40'
-                : 'text-slate-400 hover:text-white'
+                : 'text-[#8ba695] hover:text-[#f0fdf4]'
             }`}
           >
-            180° NULL ZONE
+            180° NULL
           </button>
           <button
             onClick={() => setActiveScopeView('fft')}
             className={`px-2 py-0.5 rounded font-bold transition-all ${
               activeScopeView === 'fft'
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/40'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]/40'
+                : 'text-[#8ba695] hover:text-[#f0fdf4]'
             }`}
           >
             FFT SPECTRUM
@@ -257,27 +259,27 @@ export const OscilloscopePanel: React.FC<OscilloscopePanelProps> = ({ standalone
       </div>
 
       {/* Scope Canvas Area */}
-      <div className="w-full bg-[#04060a] rounded-lg border border-[#19273c] p-2 relative overflow-hidden">
+      <div className="w-full bg-[#020604] rounded-lg border border-[#143526] p-2 relative overflow-hidden">
         {activeScopeView === 'multi' && (
           <div>
             <canvas ref={cvsMultiRef} width={380} height={190} className="w-full h-44" />
             {/* Channel Legend Tags */}
-            <div className="grid grid-cols-2 gap-1.5 mt-2 pt-2 border-t border-[#121c2c] text-[8px] font-mono">
+            <div className="grid grid-cols-2 gap-1.5 mt-2 pt-2 border-t border-[#143526] text-[8px] font-mono">
               <div className="flex items-center gap-1.5 text-rose-400">
                 <span className="w-2 h-2 rounded-full bg-rose-500" />
-                <span>CH1: AMBIENT REF MIC x[n] ({scenarioConfig.splDb} dB)</span>
+                <span>CH1: AMBIENT REF x[n] ({scenarioConfig.splDb} dB)</span>
               </div>
-              <div className="flex items-center gap-1.5 text-cyan-400">
-                <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                <span>CH2: SPEAKER ANTI-NOISE -x̂[n] (180° Phase)</span>
+              <div className="flex items-center gap-1.5 text-[#00e599]">
+                <span className="w-2 h-2 rounded-full bg-[#00e599]" />
+                <span>CH2: ANTI-NOISE -x̂[n] (180° Phase)</span>
               </div>
-              <div className="flex items-center gap-1.5 text-emerald-400">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span>CH3: EAR CANAL RESIDUAL e[n] (-34.6 dB Null)</span>
+              <div className="flex items-center gap-1.5 text-[#10b981]">
+                <span className="w-2 h-2 rounded-full bg-[#10b981]" />
+                <span>CH3: RESIDUAL e[n] (-34.6 dB Null)</span>
               </div>
-              <div className="flex items-center gap-1.5 text-emerald-300">
-                <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                <span>CH4: AI SPEECH RADIO OUT s[n] (Clear Voice)</span>
+              <div className="flex items-center gap-1.5 text-[#34d399]">
+                <span className="w-2 h-2 rounded-full bg-[#34d399]" />
+                <span>CH4: AI SPEECH RADIO s[n] (Clear)</span>
               </div>
             </div>
           </div>
@@ -286,13 +288,13 @@ export const OscilloscopePanel: React.FC<OscilloscopePanelProps> = ({ standalone
         {activeScopeView === 'nullZone' && (
           <div>
             <canvas ref={cvsNullRef} width={380} height={150} className="w-full h-36" />
-            <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-[#121c2c] text-[8px] font-mono">
+            <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-[#143526] text-[8px] font-mono">
               <div className="flex items-center gap-2">
                 <span className="text-rose-400">--- NOISE</span>
-                <span className="text-cyan-400">--- 180° ANTI-NOISE</span>
-                <span className="text-emerald-400 font-bold">― SUPERPOSITION NULL</span>
+                <span className="text-[#00e599]">--- 180° ANTI-NOISE</span>
+                <span className="text-[#10b981] font-bold">― SUPERPOSITION NULL</span>
               </div>
-              <div className="text-emerald-400 font-bold">
+              <div className="text-[#10b981] font-bold">
                 ATTENUATION: {ancActive ? (customDataset ? `-${customDataset.summary.avgAttenuationDb.toFixed(1)} dB` : '-34.6 dB') : '0.0 dB'}
               </div>
             </div>
@@ -302,24 +304,24 @@ export const OscilloscopePanel: React.FC<OscilloscopePanelProps> = ({ standalone
         {activeScopeView === 'fft' && (
           <div>
             <canvas ref={cvsFftRef} width={380} height={150} className="w-full h-36" />
-            <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-[#121c2c] text-[8px] font-mono">
-              <span className="text-slate-400">20 Hz</span>
-              <span className="text-slate-400">250 Hz (FxLMS Notch)</span>
-              <span className="text-slate-400">1 kHz</span>
-              <span className="text-slate-400">4 kHz</span>
-              <span className="text-slate-400">8 kHz</span>
+            <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-[#143526] text-[8px] font-mono">
+              <span className="text-[#4e6a5b]">20 Hz</span>
+              <span className="text-[#00e599]">250 Hz (FxLMS Notch)</span>
+              <span className="text-[#4e6a5b]">1 kHz</span>
+              <span className="text-[#4e6a5b]">4 kHz</span>
+              <span className="text-[#4e6a5b]">8 kHz</span>
             </div>
           </div>
         )}
       </div>
 
       {/* Summary Footer Badge */}
-      <div className="flex items-center justify-between mt-2 text-[9px] font-mono text-slate-400">
+      <div className="flex items-center justify-between mt-2 text-[9px] font-mono text-[#8ba695]">
         <div className="flex items-center gap-1.5">
-          <Shield className="w-3 h-3 text-[#00e5ff]" />
+          <Shield className="w-3 h-3 text-[#00e599]" />
           <span>HARMONIC THD: &lt; 0.12%</span>
         </div>
-        <div className="flex items-center gap-1 text-emerald-400 font-bold">
+        <div className="flex items-center gap-1 text-[#10b981] font-bold">
           <CheckCircle2 className="w-3 h-3" />
           <span>REAL-TIME LATENCY: 0.82 ms</span>
         </div>

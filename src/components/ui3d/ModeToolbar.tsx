@@ -32,9 +32,9 @@ export const ModeToolbar: React.FC = () => {
 
   return (
     <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 pointer-events-auto select-none font-mono">
-      <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl tactical-glass border border-[#00e5ff]/25 shadow-2xl text-[11px]">
+      <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#08140e]/95 border border-[#143526] shadow-2xl backdrop-blur-md text-[11px]">
         {/* Focus Group */}
-        <span className="text-[8px] text-slate-500 font-bold px-1 uppercase tracking-wider hidden sm:inline">
+        <span className="text-[8px] text-[#4e6a5b] font-bold px-1 uppercase tracking-wider hidden sm:inline">
           FOCUS:
         </span>
         <button
@@ -44,8 +44,8 @@ export const ModeToolbar: React.FC = () => {
           }}
           className={`px-2 py-1 rounded text-[10px] font-bold transition-all ${
             !selectedComponentId
-              ? 'bg-[#00e5ff]/20 text-[#00e5ff] border border-[#00e5ff]/50'
-              : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+              ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]/50'
+              : 'text-[#8ba695] hover:text-[#f0fdf4] hover:bg-[#0c1f15]'
           }`}
           title="Full System Test Rig View"
         >
@@ -58,8 +58,8 @@ export const ModeToolbar: React.FC = () => {
           }}
           className={`px-2 py-1 rounded text-[10px] font-bold transition-all ${
             selectedComponentId === 'boomMic'
-              ? 'bg-[#00e5ff]/20 text-[#00e5ff] border border-[#00e5ff]/50'
-              : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+              ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]/50'
+              : 'text-[#8ba695] hover:text-[#f0fdf4] hover:bg-[#0c1f15]'
           }`}
           title="Headset & Microphone"
         >
@@ -72,12 +72,12 @@ export const ModeToolbar: React.FC = () => {
           }}
           className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold transition-all ${
             selectedComponentId === 'speakerDriver'
-              ? 'bg-purple-500/25 text-purple-300 border border-purple-400'
-              : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+              ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-400'
+              : 'text-[#8ba695] hover:text-[#f0fdf4] hover:bg-[#0c1f15]'
           }`}
           title="In-Ear Destructive Wave Null Node"
         >
-          <Zap className="w-2.5 h-2.5 text-purple-400" />
+          <Zap className="w-2.5 h-2.5 text-emerald-400" />
           <span>EAR CANAL</span>
         </button>
         <button
@@ -88,25 +88,25 @@ export const ModeToolbar: React.FC = () => {
           className={`px-2 py-1 rounded text-[10px] font-bold transition-all ${
             selectedComponentId === 'raspberryPi'
               ? 'bg-amber-500/25 text-amber-300 border border-amber-400'
-              : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+              : 'text-[#8ba695] hover:text-[#f0fdf4] hover:bg-[#0c1f15]'
           }`}
           title="Waist DSP & Raspberry Pi Compute Unit"
         >
           DSP PI
         </button>
 
-        <div className="h-4 w-px bg-slate-700/80 mx-1" />
+        <div className="h-4 w-px bg-[#143526] mx-1" />
 
         {/* View Mode Buttons */}
         <button
           onClick={() => viewerStore.setMode('WORKFLOW')}
           className={`flex items-center gap-1 px-2.5 py-1 rounded text-[10px] font-bold transition-all ${
             currentMode === 'WORKFLOW'
-              ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-400'
-              : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+              ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]/60'
+              : 'text-[#8ba695] hover:text-[#f0fdf4] hover:bg-[#0c1f15]'
           }`}
         >
-          <Play className="w-2.5 h-2.5 text-emerald-400" />
+          <Play className="w-2.5 h-2.5 text-[#00e599]" />
           <span>WORKFLOW</span>
         </button>
 
@@ -114,11 +114,11 @@ export const ModeToolbar: React.FC = () => {
           onClick={() => viewerStore.setMode('SIMULATION')}
           className={`flex items-center gap-1 px-2.5 py-1 rounded text-[10px] font-bold transition-all ${
             currentMode === 'SIMULATION'
-              ? 'bg-[#00e5ff]/20 text-[#00e5ff] border border-[#00e5ff]'
-              : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+              ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]/60'
+              : 'text-[#8ba695] hover:text-[#f0fdf4] hover:bg-[#0c1f15]'
           }`}
         >
-          <Activity className="w-2.5 h-2.5 text-[#00e5ff]" />
+          <Activity className="w-2.5 h-2.5 text-[#00e599]" />
           <span>ACOUSTICS</span>
         </button>
 
@@ -126,8 +126,8 @@ export const ModeToolbar: React.FC = () => {
           onClick={() => viewerStore.setMode('EXPLODED')}
           className={`flex items-center gap-1 px-2.5 py-1 rounded text-[10px] font-bold transition-all ${
             currentMode === 'EXPLODED'
-              ? 'bg-[#00e5ff]/20 text-[#00e5ff] border border-[#00e5ff]'
-              : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+              ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]/60'
+              : 'text-[#8ba695] hover:text-[#f0fdf4] hover:bg-[#0c1f15]'
           }`}
         >
           <Layers className="w-2.5 h-2.5" />
@@ -135,7 +135,7 @@ export const ModeToolbar: React.FC = () => {
         </button>
 
         {currentMode === 'EXPLODED' && (
-          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#060a12] border border-cyan-500/30">
+          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#030906] border border-[#143526]">
             <input
               type="range"
               min="0"
@@ -143,9 +143,9 @@ export const ModeToolbar: React.FC = () => {
               step="0.02"
               value={explodedProgress}
               onChange={(e) => viewerStore.setExplodedProgress(parseFloat(e.target.value))}
-              className="w-16 accent-[#00e5ff] cursor-pointer"
+              className="w-16 accent-[#00e599] cursor-pointer"
             />
-            <span className="text-[9px] text-[#00e5ff]">{Math.round(explodedProgress * 100)}%</span>
+            <span className="text-[9px] text-[#00e599] font-mono">{Math.round(explodedProgress * 100)}%</span>
           </div>
         )}
 
@@ -153,22 +153,22 @@ export const ModeToolbar: React.FC = () => {
           onClick={() => viewerStore.setMode('X-RAY')}
           className={`px-2 py-1 rounded text-[10px] font-bold transition-all ${
             currentMode === 'X-RAY'
-              ? 'bg-[#00e5ff]/20 text-[#00e5ff] border border-[#00e5ff]'
-              : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+              ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]/60'
+              : 'text-[#8ba695] hover:text-[#f0fdf4] hover:bg-[#0c1f15]'
           }`}
         >
           X-RAY
         </button>
 
-        <div className="h-4 w-px bg-slate-700/80 mx-1" />
+        <div className="h-4 w-px bg-[#143526] mx-1" />
 
         {/* Toggles: Labels, Reset, Fullscreen */}
         <button
           onClick={() => viewerStore.toggleLabels()}
           className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] transition-all ${
             showLabels
-              ? 'text-[#00e5ff] bg-[#00e5ff]/15 border border-[#00e5ff]/40'
-              : 'text-slate-400 hover:text-white'
+              ? 'text-[#00e599] bg-[#00e599]/15 border border-[#00e599]/40'
+              : 'text-[#8ba695] hover:text-[#f0fdf4]'
           }`}
           title="Toggle Active Component 3D Label"
         >
@@ -178,7 +178,7 @@ export const ModeToolbar: React.FC = () => {
 
         <button
           onClick={() => viewerStore.resetView()}
-          className="p-1 rounded text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all"
+          className="p-1 rounded text-[#8ba695] hover:text-[#f0fdf4] hover:bg-[#0c1f15] transition-all"
           title="Reset Camera View"
         >
           <RotateCcw className="w-3.5 h-3.5" />
@@ -186,7 +186,7 @@ export const ModeToolbar: React.FC = () => {
 
         <button
           onClick={toggleFullscreen}
-          className="p-1 rounded text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all"
+          className="p-1 rounded text-[#8ba695] hover:text-[#f0fdf4] hover:bg-[#0c1f15] transition-all"
           title="Toggle Fullscreen"
         >
           <Maximize className="w-3.5 h-3.5" />

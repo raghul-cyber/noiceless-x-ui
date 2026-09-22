@@ -8,29 +8,52 @@ export default {
     extend: {
       colors: {
         studio: {
-          950: '#06080d',
-          900: '#090c13',
-          850: '#0e121c',
-          800: '#141a27',
-          700: '#1e2638',
-          600: '#2a344d',
-          500: '#435172',
-          400: '#7584a6',
-          300: '#a3b1ce',
-          200: '#d0daf0',
-          100: '#eef2fc',
+          950: '#040a07', // Deep Obsidian Void
+          900: '#08140e', // Primary Dark Jade Panel
+          850: '#0c1e15', // Chassis Surface
+          800: '#10281c', // Elevated Module
+          700: '#143526', // Boundary Seam
+          600: '#1e4a36', // Structural Border
+          500: '#28634a', // Emerald Accent Low
+          400: '#4b7a63', // Muted Sage
+          300: '#8ba695', // Tactical Secondary Slate
+          200: '#c5d8cc', // Secondary Text
+          100: '#f0fdf4', // Crisp Primary Text
+        },
+        pine: {
+          void: '#020604',
+          canvas: '#040a07',
+          panel: '#08140e',
+          surface: '#0a1a12',
+          elevated: '#0e2419',
+          border: '#143526',
+          borderBright: '#1f4f39',
         },
         signal: {
-          cyan: '#00d4aa',
+          mint: '#00e599',
+          cyan: '#00e599', // Unified with vibrant tactical mint
           amber: '#f59e0b',
-          red: '#ef4444',
+          red: '#ff3b5c',
           green: '#10b981',
-          blue: '#3b82f6',
+          blue: '#38bdf8',
+        },
+        tactical: {
+          mint: '#00e599',
+          amber: '#f59e0b',
+          crimson: '#ff3b5c',
+          slate: '#8ba695',
+          dim: '#41574b',
+          light: '#f0fdf4',
         }
+      },
+      boxShadow: {
+        'tactile-mint': '0 0 12px rgba(0, 229, 153, 0.3)',
+        'tactile-glow': '0 0 20px rgba(0, 229, 153, 0.2)',
+        'tactile-amber': '0 0 12px rgba(245, 158, 11, 0.25)',
       },
       fontFamily: {
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
       },
     },
   },

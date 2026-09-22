@@ -146,7 +146,7 @@ export const PIPELINE_STAGES: PipelineStage[] = [
     title: 'REFERENCE MIC TRANSDUCTION',
     subtitle: 'Wideband MEMS Reference Mic (Left Earcup)',
     componentId: 'externalRefMic',
-    color: '#00e5ff',
+    color: '#00e599',
     signalType: 'REFERENCE',
     mathFormula: 'x[n] = \\mathcal{Q}_{24b}\\{G_{pre} \\cdot x(n T_s)\\}',
     latencyMs: 0.12,
