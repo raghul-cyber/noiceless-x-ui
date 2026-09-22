@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #06080d;
+  color: #e2e8f0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* Custom engineering scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090c13;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e2638;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a344d;
+}
+
+/* Fine technical grid pattern for oscilloscopes & backdrops */
+.bg-tech-grid {
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.bg-scope-grid {
+  background-size: 16px 16px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 212, 170, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 212, 170, 0.05) 1px, transparent 1px);
+}
+
+/* Precision audio knob and slider resets */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #141a27;
+  border-radius: 4px;
+  height: 6px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  background: #00d4aa;
+  cursor: pointer;
+  border: 1px solid #06080d;
+  box-shadow: 0 0 4px rgba(0, 212, 170, 0.4);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  background: #00d4aa;
+  cursor: pointer;
+  border: 1px solid #06080d;
+}
