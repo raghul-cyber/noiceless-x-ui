@@ -91,8 +91,40 @@ const DEFAULT_RECORDINGS: AudioRecording[] = [
   }
 ];
 
+const getInitialView = (): ActiveView => {
+  if (typeof window !== 'undefined') {
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    const validViews: ActiveView[] = ['overview', 'live', 'hardware3d', 'recordings', 'analysis', 'streaming', 'devices', 'system'];
+    if (validViews.includes(hash as ActiveView)) {
+      return hash as ActiveView;
+    }
+  }
+  return 'overview';
+};
+
 export function useAppStore(): AppState {
-  const [activeView, setActiveView] = useState<ActiveView>('hardware3d');
+  const [activeView, setActiveViewState] = useState<ActiveView>(getInitialView);
+
+  const setActiveView = (view: ActiveView) => {
+    setActiveViewState(view);
+    if (typeof window !== 'undefined') {
+      window.location.hash = view;
+    }
+  };
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '').toLowerCase();
+      const validViews: ActiveView[] = ['overview', 'live', 'hardware3d', 'recordings', 'analysis', 'streaming', 'devices', 'system'];
+      if (validViews.includes(hash as ActiveView)) {
+        setActiveViewState(hash as ActiveView);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   const [isProcessingActive, setIsProcessingActive] = useState<boolean>(true);
   const [isLiveMode, setIsLiveMode] = useState<boolean>(true);
   const [isAudioMuted, setIsAudioMuted] = useState<boolean>(true);

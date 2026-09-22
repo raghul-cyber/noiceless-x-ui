@@ -14,7 +14,11 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ store }) => {
       <header className="h-14 border-b border-[#182030] bg-[#07090e] px-5 flex items-center justify-between select-none z-30 flex-shrink-0">
         {/* Left Section: Brand & Product Architecture */}
         <div className="flex items-center space-x-6">
-          <div className="flex items-center space-x-3">
+          <div 
+            className="flex items-center space-x-3 cursor-pointer hover:opacity-90 transition-opacity"
+            onClick={() => store.setActiveView('overview')}
+            title="Return to Overview Dashboard"
+          >
             <div className="w-7 h-7 rounded border border-signal-cyan/40 bg-signal-cyan/10 flex items-center justify-center text-signal-cyan">
               <Activity className="w-4 h-4" />
             </div>
