@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Activity, Sliders, Waves, Layers, Database } from 'lucide-react';
+import { X, Activity, Sliders, Waves, Layers, Database, Crosshair } from 'lucide-react';
 import { useViewerStore, viewerStore } from '../../store/useViewerStore';
 import { OscilloscopePanel } from './OscilloscopePanel';
 import { ScenarioSelector } from './ScenarioSelector';
@@ -12,26 +12,26 @@ export const SimulationDock: React.FC = () => {
   if (!showHud) return null;
 
   return (
-    <aside className="fixed top-14 right-3 bottom-14 z-40 w-96 md:w-[480px] max-w-[94vw] bg-[#08140e]/95 border border-[#143526] p-3.5 rounded-2xl shadow-[0_12px_48px_rgba(0,0,0,0.9)] backdrop-blur-2xl flex flex-col font-mono select-none animate-fade-in pointer-events-auto">
+    <aside className="mil-corner-bracket fixed top-14 right-3 bottom-14 z-40 w-96 md:w-[480px] max-w-[94vw] bg-[#0b120c]/95 border border-[#223425] p-3.5 rounded shadow-[0_12px_48px_rgba(0,0,0,0.9)] backdrop-blur-md flex flex-col font-mono select-none animate-fade-in pointer-events-auto">
       {/* Drawer Header */}
-      <div className="flex items-center justify-between pb-2.5 border-b border-[#143526] mb-2.5 flex-shrink-0">
+      <div className="flex items-center justify-between pb-2.5 border-b border-[#223425] mb-2.5 flex-shrink-0">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md bg-[#00e599]/10 border border-[#00e599]/30 flex items-center justify-center text-[#00e599]">
-            <Activity className="w-3.5 h-3.5" />
+          <div className="w-6 h-6 rounded bg-[#22e565]/10 border border-[#22e565]/40 flex items-center justify-center text-[#22e565]">
+            <Crosshair className="w-3.5 h-3.5" />
           </div>
-          <h3 className="text-xs font-bold uppercase tracking-wider text-[#f0fdf4]">
-            DSP TELEMETRY &amp; SIMULATION
+          <h3 className="text-xs font-bold uppercase font-stencil tracking-widest text-[#f0fdf4]">
+            TOC DSP TELEMETRY &amp; SCOPES
           </h3>
         </div>
 
         <div className="flex items-center gap-1.5">
           {/* Tabs */}
-          <div className="flex items-center bg-[#030906] p-0.5 rounded-lg border border-[#143526] text-[9px]">
+          <div className="flex items-center bg-[#070e09] p-0.5 rounded border border-[#223425] text-[9px] font-stencil">
             <button
               onClick={() => viewerStore.setActiveHudTab('oscilloscope')}
               className={`px-2 py-1 rounded font-bold transition-all ${
                 activeHudTab === 'oscilloscope'
-                  ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]/40'
+                  ? 'bg-[#22e565]/20 text-[#22e565] border border-[#22e565]/40'
                   : 'text-[#8ba695] hover:text-[#f0fdf4]'
               }`}
             >
@@ -41,31 +41,31 @@ export const SimulationDock: React.FC = () => {
               onClick={() => viewerStore.setActiveHudTab('scenarios')}
               className={`px-2 py-1 rounded font-bold transition-all ${
                 activeHudTab === 'scenarios'
-                  ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]/40'
+                  ? 'bg-[#22e565]/20 text-[#22e565] border border-[#22e565]/40'
                   : 'text-[#8ba695] hover:text-[#f0fdf4]'
               }`}
             >
-              ENV NOISE
+              THREATS
             </button>
             <button
               onClick={() => viewerStore.setActiveHudTab('dataset')}
               className={`flex items-center gap-1 px-2 py-1 rounded font-bold transition-all ${
                 activeHudTab === 'dataset'
-                  ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]/40'
+                  ? 'bg-[#22e565]/20 text-[#22e565] border border-[#22e565]/40'
                   : 'text-[#8ba695] hover:text-[#f0fdf4]'
               }`}
             >
               <Database className="w-2.5 h-2.5" />
               <span>CSV DATA</span>
               {customDataset && (
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00e599] animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#22e565] animate-pulse" />
               )}
             </button>
             <button
               onClick={() => viewerStore.setActiveHudTab('pipeline')}
               className={`px-2 py-1 rounded font-bold transition-all ${
                 activeHudTab === 'pipeline'
-                  ? 'bg-[#00e599]/20 text-[#00e599] border border-[#00e599]/40'
+                  ? 'bg-[#22e565]/20 text-[#22e565] border border-[#22e565]/40'
                   : 'text-[#8ba695] hover:text-[#f0fdf4]'
               }`}
             >
@@ -76,7 +76,7 @@ export const SimulationDock: React.FC = () => {
           {/* Close Button */}
           <button
             onClick={() => viewerStore.closeHud()}
-            className="p-1 rounded-lg bg-[#030906] border border-[#143526] text-[#8ba695] hover:text-[#f0fdf4] hover:border-rose-500/50 hover:bg-rose-950/30 transition-all"
+            className="p-1 rounded bg-[#070e09] border border-[#223425] text-[#8ba695] hover:text-[#f0fdf4] hover:border-red-500/50 hover:bg-red-950/30 transition-all"
             title="Close Drawer"
           >
             <X className="w-4 h-4" />

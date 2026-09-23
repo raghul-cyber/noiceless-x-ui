@@ -7,7 +7,9 @@ import {
   Network, 
   SlidersHorizontal, 
   Cpu, 
-  Box
+  Box,
+  ShieldAlert,
+  Wifi
 } from 'lucide-react';
 import { ActiveView } from '../../types/audio';
 import { useAppStore } from '../../store/useAppStore';
@@ -17,24 +19,31 @@ interface SidebarNavProps {
 }
 
 export const SidebarNav: React.FC<SidebarNavProps> = ({ store }) => {
-  const navItems: { id: ActiveView; label: string; icon: React.FC<{ className?: string }>; badge?: string }[] = [
-    { id: 'overview', label: 'OVERVIEW', icon: LayoutDashboard },
-    { id: 'live', label: 'LIVE SPECTRAL', icon: Radio, badge: 'REALTIME' },
-    { id: 'hardware3d', label: 'WORKFLOW & 3D SIM', icon: Box, badge: 'SIMULATION' },
-    { id: 'recordings', label: 'RECORDINGS', icon: Disc, badge: `${store.recordings.length}` },
-    { id: 'analysis', label: 'ANALYSIS', icon: BarChart3 },
-    { id: 'streaming', label: 'STREAMING', icon: Network, badge: store.isStreamingActive ? 'ON' : 'OFF' },
-    { id: 'devices', label: 'DEVICES', icon: SlidersHorizontal },
-    { id: 'system', label: 'SYSTEM', icon: Cpu },
+  const navItems: { id: ActiveView; index: string; label: string; icon: React.FC<{ className?: string }>; badge?: string }[] = [
+    { id: 'overview', index: '01', label: 'TOC OVERVIEW', icon: LayoutDashboard },
+    { id: 'live', index: '02', label: 'COMBAT COMMS', icon: Radio, badge: 'REALTIME' },
+    { id: 'hardware3d', index: '03', label: 'SENSOR RIG 3D', icon: Box, badge: 'SIM' },
+    { id: 'analysis', index: '04', label: 'THREAT INTERCEPT', icon: BarChart3 },
+    { id: 'devices', index: '05', label: 'FIELD HARDWARE', icon: SlidersHorizontal },
+    { id: 'recordings', index: '06', label: 'MISSION LOGS', icon: Disc, badge: `${store.recordings.length}` },
+    { id: 'streaming', index: '07', label: 'TACTICAL MESH', icon: Network, badge: store.isStreamingActive ? 'LIVE' : 'IDLE' },
+    { id: 'system', index: '08', label: 'C4ISR DIAGNOSTICS', icon: Cpu },
   ];
 
   return (
-    <aside className="w-56 border-r border-[#143526] bg-[#06100b] flex flex-col justify-between select-none z-20 flex-shrink-0">
-      {/* Primary Navigation List */}
-      <div className="py-3.5">
-        <div className="px-3.5 mb-2.5 text-[9px] font-mono tracking-widest text-[#4e6a5b] uppercase flex items-center justify-between">
-          <span>OPERATIONAL SUITE</span>
-          <span className="text-[8px] text-[#8ba695] font-semibold">REV 4.2</span>
+    <aside className="w-60 border-r border-[#223425] bg-[#070c08] flex flex-col justify-between select-none z-20 flex-shrink-0">
+      {/* Primary Military Navigation List */}
+      <div className="py-2.5">
+        <div className="px-3 mb-2 flex items-center justify-between border-b border-[#223425] pb-2 font-mono">
+          <div className="flex items-center space-x-1.5">
+            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#22e565] shadow-[0_0_4px_#22e565]" />
+            <span className="text-[9px] tracking-widest text-[#7ea385] uppercase font-bold">
+              // TACTICAL OPS SUITE
+            </span>
+          </div>
+          <span className="text-[8px] text-[#22e565] font-bold bg-[#22e565]/10 px-1 py-0.2 rounded border border-[#22e565]/30">
+            TOC-ALPHA
+          </span>
         </div>
 
         <nav className="space-y-1 px-2 font-mono">
@@ -45,23 +54,26 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({ store }) => {
               <button
                 key={item.id}
                 onClick={() => store.setActiveView(item.id)}
-                className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-xs tracking-wider transition-all text-left ${
+                className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-[2px] text-xs tracking-wider transition-all text-left ${
                   isActive
-                    ? 'bg-[#00e599]/15 text-[#00e599] font-bold border-l-2 border-[#00e599] pl-2.5 shadow-[inset_0_0_12px_rgba(0,229,153,0.08)]'
-                    : 'text-[#8ba695] hover:text-[#f0fdf4] hover:bg-[#0a1c13]'
+                    ? 'bg-[#142316] text-[#22e565] font-bold border-l-2 border-[#22e565] border-y border-r border-[#2e4632] pl-2 shadow-[inset_0_0_10px_rgba(34,229,101,0.15)]'
+                    : 'text-[#7ea385] hover:text-[#e8f2e6] hover:bg-[#0e1710] border border-transparent'
                 }`}
               >
-                <div className="flex items-center space-x-2.5">
-                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#00e599]' : 'text-[#4e6a5b]'}`} />
-                  <span className="text-[11px] font-semibold">{item.label}</span>
+                <div className="flex items-center space-x-2">
+                  <span className={`text-[9px] font-bold ${isActive ? 'text-[#22e565]' : 'text-[#3d5c43]'}`}>
+                    [{item.index}]
+                  </span>
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#22e565]' : 'text-[#557b5c]'}`} />
+                  <span className="text-[10px] font-bold uppercase">{item.label}</span>
                 </div>
                 {item.badge && (
-                  <span className={`text-[9px] px-1.5 py-0.5 rounded font-mono ${
+                  <span className={`text-[8px] px-1 py-0.2 rounded-[1px] font-mono font-bold ${
                     isActive 
-                      ? 'bg-[#00e599]/25 text-[#00e599] border border-[#00e599]/40' 
-                      : item.badge === 'ON' || item.badge === 'REALTIME'
-                      ? 'bg-[#10b981]/15 text-[#10b981] border border-[#10b981]/25'
-                      : 'bg-[#030906] text-[#4e6a5b] border border-[#143526]'
+                      ? 'bg-[#22e565]/20 text-[#22e565] border border-[#22e565]/40' 
+                      : item.badge === 'LIVE' || item.badge === 'REALTIME'
+                      ? 'bg-[#22e565]/10 text-[#22e565] border border-[#22e565]/30'
+                      : 'bg-[#050805] text-[#557b5c] border border-[#223425]'
                   }`}>
                     {item.badge}
                   </span>
@@ -72,22 +84,26 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({ store }) => {
         </nav>
       </div>
 
-      {/* Bottom System Telemetry Summary */}
-      <div className="p-3.5 border-t border-[#143526] bg-[#040a07] space-y-2 font-mono text-[11px]">
-        <div className="flex justify-between items-center text-[#8ba695]">
-          <span className="text-[9px] text-[#4e6a5b] uppercase tracking-wider">HARDWARE I/O</span>
-          <span className="text-[#00e599] flex items-center space-x-1.5 font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00e599] animate-pulse shadow-[0_0_6px_#00e599]" />
-            <span>USB PnP ACTIVE</span>
+      {/* Bottom Military Base Telemetry & Classification Footer */}
+      <div className="p-3 border-t border-[#223425] bg-[#050805] space-y-2 font-mono text-[10px]">
+        <div className="flex justify-between items-center text-[#7ea385]">
+          <span className="text-[8px] text-[#557b5c] uppercase tracking-wider">IFF SQUAWK</span>
+          <span className="text-[#22e565] flex items-center space-x-1.5 font-bold text-[9px]">
+            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#22e565] animate-pulse shadow-[0_0_6px_#22e565]" />
+            <span>MODE 5 FRIENDLY</span>
           </span>
         </div>
-        <div className="flex justify-between items-center text-[#8ba695]">
-          <span className="text-[9px] text-[#4e6a5b] uppercase tracking-wider">DSP LOAD</span>
-          <span className="text-[#f0fdf4] font-semibold tabular-nums">{store.telemetry.cpuLoadPercent.toFixed(1)}%</span>
+        <div className="flex justify-between items-center text-[#7ea385]">
+          <span className="text-[8px] text-[#557b5c] uppercase tracking-wider">DSP LOAD</span>
+          <span className="text-[#e8f2e6] font-semibold tabular-nums">{store.telemetry.cpuLoadPercent.toFixed(1)}%</span>
         </div>
-        <div className="flex justify-between items-center text-[#8ba695]">
-          <span className="text-[9px] text-[#4e6a5b] uppercase tracking-wider">NOISE RED</span>
-          <span className="text-[#00e599] font-bold tabular-nums">-{store.telemetry.noiseReductionDb} dB</span>
+        <div className="flex justify-between items-center text-[#7ea385]">
+          <span className="text-[8px] text-[#557b5c] uppercase tracking-wider">THREAT ATTEN</span>
+          <span className="text-[#22e565] font-bold tabular-nums">-{store.telemetry.noiseReductionDb.toFixed(1)} dB</span>
+        </div>
+        <div className="pt-1.5 border-t border-[#223425] flex items-center justify-between text-[8px] text-[#557b5c]">
+          <span>COMSEC: AES-256</span>
+          <span className="text-[#7ea385] font-semibold">TOC-ALPHA</span>
         </div>
       </div>
     </aside>

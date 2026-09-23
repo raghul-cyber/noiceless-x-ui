@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { Radio, Sliders, Activity, Disc, Volume2, Zap } from 'lucide-react';
+import { Radio, Sliders, Activity, Disc, Volume2, Zap, Crosshair, Shield } from 'lucide-react';
 import { audioEngine } from '../../audio/audioEngine';
 import { useAppStore } from '../../store/useAppStore';
 
@@ -23,19 +23,21 @@ export const LiveView: React.FC<LiveViewProps> = ({ store }) => {
         const cvs = fftCanvasRef.current;
         const ctx = cvs.getContext('2d');
         if (ctx) {
-          ctx.fillStyle = '#020604';
+          ctx.fillStyle = '#050906';
           ctx.fillRect(0, 0, cvs.width, cvs.height);
 
-          // Draw frequency grid lines (100Hz, 1kHz, 5kHz, 10kHz, 20kHz)
-          ctx.strokeStyle = 'rgba(20, 53, 38, 0.5)';
+          // Draw military CRT frequency division grid
+          ctx.strokeStyle = 'rgba(34, 52, 37, 0.6)';
           ctx.lineWidth = 1;
           for (let i = 1; i < 6; i++) {
             const y = (cvs.height / 6) * i;
             ctx.beginPath();
+            ctx.setLineDash([2, 4]);
             ctx.moveTo(0, y);
             ctx.lineTo(cvs.width, y);
             ctx.stroke();
           }
+          ctx.setLineDash([]);
 
           const barCount = 48;
           const barWidth = (cvs.width / barCount) - 2;
@@ -45,14 +47,14 @@ export const LiveView: React.FC<LiveViewProps> = ({ store }) => {
             const outVal = outputFft[i] / 255;
             const x = i * (barWidth + 2);
 
-            // Draw Raw Input FFT (Amber)
+            // Draw Raw Input FFT (Radar Amber)
             const inHeight = inVal * (cvs.height * 0.88);
             ctx.fillStyle = 'rgba(245, 158, 11, 0.35)';
             ctx.fillRect(x, cvs.height - inHeight, barWidth, inHeight);
 
-            // Draw Processed Output FFT (Tactical Mint)
+            // Draw Processed Output FFT (Military Phosphor Green)
             const outHeight = outVal * (cvs.height * 0.88);
-            ctx.fillStyle = store.isProcessingActive ? '#00e599' : '#f59e0b';
+            ctx.fillStyle = store.isProcessingActive ? '#22e565' : '#f59e0b';
             ctx.fillRect(x, cvs.height - outHeight, barWidth, outHeight);
 
             // Peak cap line
@@ -70,59 +72,59 @@ export const LiveView: React.FC<LiveViewProps> = ({ store }) => {
   }, [store.isProcessingActive]);
 
   return (
-    <div className="h-full overflow-y-auto p-3.5 space-y-3 select-none bg-[#040a07]">
+    <div className="h-full overflow-y-auto p-3.5 space-y-3 select-none bg-[#060a07] font-mono">
       {/* Workstation Header */}
-      <div className="bg-[#08140e] border border-[#143526] rounded-md p-3.5 flex flex-col md:flex-row items-center justify-between gap-3 shadow-md">
+      <div className="bg-[#0b120c] border border-[#223425] rounded-[2px] p-3.5 flex flex-col md:flex-row items-center justify-between gap-3 shadow-md mil-corner-bracket">
         <div>
           <div className="flex items-center space-x-2">
-            <Radio className="w-4 h-4 text-[#00e599]" />
-            <h1 className="font-mono text-xs font-bold tracking-wider text-[#f0fdf4] uppercase">
-              HIGH-PRECISION AUDIO ENGINEERING WORKSTATION
+            <Radio className="w-4 h-4 text-[#22e565]" />
+            <h1 className="text-xs font-bold tracking-wider text-[#e8f2e6] uppercase">
+              // TACTICAL COMBAT SPECTRAL ANALYZER &amp; RF INTERCEPT
             </h1>
           </div>
-          <p className="text-[#8ba695] text-xs mt-1 font-sans">
-            Simultaneous dual-channel oscilloscopic capture, 48-band FFT spectrum analyzer, and real-time neural attenuation staging.
+          <p className="text-[#7ea385] text-xs mt-1">
+            Simultaneous 48-band FFT spectrum analyzer, anti-jam neural suppression, and acoustic warfare telemetry.
           </p>
         </div>
 
-        <div className="flex items-center space-x-3 font-mono text-xs">
+        <div className="flex items-center space-x-3 text-xs">
           <button
             onClick={store.toggleProcessing}
-            className={`px-3 py-1.5 rounded-[3px] border flex items-center space-x-2 font-bold cursor-pointer transition-all ${
+            className={`px-3 py-1.5 rounded-[1px] border flex items-center space-x-2 font-bold cursor-pointer transition-all ${
               store.isProcessingActive
-                ? 'bg-[#00e599]/20 border-[#00e599]/50 text-[#00e599] shadow-[0_0_8px_rgba(0,229,153,0.2)]'
-                : 'bg-[#f59e0b]/20 border-[#f59e0b]/50 text-[#f59e0b]'
+                ? 'bg-[#142316] border-[#22e565]/60 text-[#22e565] shadow-[0_0_8px_rgba(34,229,101,0.25)]'
+                : 'bg-[#2b1f09] border-[#f59e0b]/60 text-[#f59e0b]'
             }`}
           >
             <Zap className="w-3.5 h-3.5" />
-            <span>{store.isProcessingActive ? 'DEEPFILTERNET3: ENGAGED' : 'BYPASS ACTIVE'}</span>
+            <span>{store.isProcessingActive ? 'DEEPFILTERNET3: ENGAGED' : 'BYPASS MODE ACTIVE'}</span>
           </button>
         </div>
       </div>
 
       {/* Real-Time FFT Spectral Analyzer (20 Hz - 20 kHz) */}
-      <div className="bg-[#08140e] border border-[#143526] rounded-md p-3.5 flex flex-col space-y-3 shadow-md">
-        <div className="flex items-center justify-between pb-2 border-b border-[#143526]">
+      <div className="bg-[#0b120c] border border-[#223425] rounded-[2px] p-3.5 flex flex-col space-y-3 shadow-md mil-corner-bracket">
+        <div className="flex items-center justify-between pb-2 border-b border-[#223425]">
           <div className="flex items-center space-x-2">
-            <Activity className="w-3.5 h-3.5 text-[#00e599]" />
-            <span className="font-mono text-xs font-bold text-[#f0fdf4] tracking-wider uppercase">
-              REAL-TIME 48-BAND DUAL FFT SPECTRUM ANALYZER
+            <Activity className="w-3.5 h-3.5 text-[#22e565]" />
+            <span className="text-xs font-bold text-[#e8f2e6] tracking-wider uppercase">
+              48-BAND DUAL FFT BATTLEFIELD SPECTRUM ANALYZER
             </span>
           </div>
-          <div className="flex items-center space-x-4 font-mono text-[10px]">
+          <div className="flex items-center space-x-4 text-[10px]">
             <div className="flex items-center space-x-1.5">
-              <span className="w-2.5 h-2.5 rounded-[2px] bg-amber-500/40 border border-amber-500/80" />
-              <span className="text-[#8ba695]">INPUT NOISE SPECTRUM</span>
+              <span className="w-2.5 h-2.5 rounded-[1px] bg-amber-500/40 border border-amber-500/80" />
+              <span className="text-[#7ea385]">HOSTILE NOISE INGEST</span>
             </div>
             <div className="flex items-center space-x-1.5">
-              <span className="w-2.5 h-2.5 rounded-[2px] bg-[#00e599] shadow-[0_0_4px_#00e599]" />
-              <span className="text-[#00e599] font-semibold">ENHANCED SPEECH SIGNAL</span>
+              <span className="w-2.5 h-2.5 rounded-[1px] bg-[#22e565] shadow-[0_0_4px_#22e565]" />
+              <span className="text-[#22e565] font-bold">TACTICAL VOICE RESIDUAL</span>
             </div>
           </div>
         </div>
 
         {/* FFT Canvas */}
-        <div className="relative w-full h-56 bg-[#020604] rounded-[2px] overflow-hidden border border-[#143526]">
+        <div className="relative w-full h-56 bg-[#050906] rounded-[1px] overflow-hidden border border-[#223425]">
           <canvas
             ref={fftCanvasRef}
             width={840}
@@ -130,7 +132,7 @@ export const LiveView: React.FC<LiveViewProps> = ({ store }) => {
             className="w-full h-full block"
           />
           {/* Frequency Axis Markings */}
-          <div className="absolute bottom-1.5 left-4 right-4 flex justify-between font-mono text-[9px] text-[#4e6a5b] pointer-events-none">
+          <div className="absolute bottom-1.5 left-4 right-4 flex justify-between font-mono text-[9px] text-[#557b5c] pointer-events-none">
             <span>20 Hz</span>
             <span>100 Hz</span>
             <span>500 Hz</span>
@@ -142,20 +144,20 @@ export const LiveView: React.FC<LiveViewProps> = ({ store }) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between text-[11px] font-mono text-[#8ba695] pt-0.5">
-          <span>WINDOW: HANNING 1024 SMP</span>
+        <div className="flex items-center justify-between text-[10px] text-[#7ea385] pt-0.5 border-t border-[#223425]">
+          <span>HANNING WINDOW (1024 SMP)</span>
           <span>RESOLUTION: 46.8 Hz/BIN</span>
-          <span className="text-[#00e599]">DYNAMIC RANGE: 96 dBFS</span>
+          <span className="text-[#22e565] font-bold">DYNAMIC RANGE: 96 dBFS</span>
         </div>
       </div>
 
       {/* Hardware Staging Knobs and Faders */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {/* Attenuation Strength Slider */}
-        <div className="bg-[#08140e] border border-[#143526] rounded-md p-3.5 space-y-2.5 shadow-md">
-          <div className="flex justify-between items-center text-xs font-mono">
-            <span className="text-[#8ba695]">SUPPRESSION DEPTH</span>
-            <span className="text-[#00e599] font-bold">{store.suppressionDepth}%</span>
+        <div className="bg-[#0b120c] border border-[#223425] rounded-[2px] p-3.5 space-y-2.5 shadow-md mil-corner-bracket">
+          <div className="flex justify-between items-center text-xs">
+            <span className="text-[#7ea385]">ANTI-JAM SUPPRESSION DEPTH</span>
+            <span className="text-[#22e565] font-bold">{store.suppressionDepth}%</span>
           </div>
           <input
             type="range"
@@ -165,18 +167,18 @@ export const LiveView: React.FC<LiveViewProps> = ({ store }) => {
             onChange={(e) => store.setSuppressionDepth(Number(e.target.value))}
             className="w-full cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] font-mono text-[#4e6a5b]">
-            <span>LIGHT (-12dB)</span>
-            <span>OPTIMAL (-24dB)</span>
-            <span>MAX (-38dB)</span>
+          <div className="flex justify-between text-[9px] text-[#557b5c]">
+            <span>TACTICAL LOW (-12dB)</span>
+            <span>BATTLEFIELD (-24dB)</span>
+            <span>EXTREME (-38dB)</span>
           </div>
         </div>
 
         {/* VAD Sensitivity Slider */}
-        <div className="bg-[#08140e] border border-[#143526] rounded-md p-3.5 space-y-2.5 shadow-md">
-          <div className="flex justify-between items-center text-xs font-mono">
-            <span className="text-[#8ba695]">VAD SENSITIVITY</span>
-            <span className="text-[#00e599] font-bold">{store.vadSensitivity}%</span>
+        <div className="bg-[#0b120c] border border-[#223425] rounded-[2px] p-3.5 space-y-2.5 shadow-md mil-corner-bracket">
+          <div className="flex justify-between items-center text-xs">
+            <span className="text-[#7ea385]">VAD (VOICE ACTIVITY) THRESHOLD</span>
+            <span className="text-[#22e565] font-bold">{store.vadSensitivity}%</span>
           </div>
           <input
             type="range"
@@ -186,27 +188,27 @@ export const LiveView: React.FC<LiveViewProps> = ({ store }) => {
             onChange={(e) => store.setVadSensitivity(Number(e.target.value))}
             className="w-full cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] font-mono text-[#4e6a5b]">
+          <div className="flex justify-between text-[9px] text-[#557b5c]">
             <span>HIGH THRESHOLD</span>
-            <span>OPERATIONAL</span>
-            <span>LOW THRESHOLD</span>
+            <span>PATROL NOMINAL</span>
+            <span>WHISPER CAPTURE</span>
           </div>
         </div>
 
         {/* Input/Output VU Headroom Telemetry */}
-        <div className="bg-[#08140e] border border-[#143526] rounded-md p-3.5 space-y-2 font-mono text-xs shadow-md">
-          <span className="text-[#4e6a5b] block text-[10px] uppercase tracking-wider">CALIBRATED HEADROOM</span>
-          <div className="flex justify-between items-center text-[#8ba695]">
+        <div className="bg-[#0b120c] border border-[#223425] rounded-[2px] p-3.5 space-y-2 text-xs shadow-md mil-corner-bracket">
+          <span className="text-[#557b5c] block text-[9px] uppercase tracking-wider font-bold">MIL-SPEC HEADROOM</span>
+          <div className="flex justify-between items-center text-[#7ea385]">
             <span>NOMINAL HEADROOM:</span>
-            <span className="text-[#10b981] font-bold">18.4 dBFS</span>
+            <span className="text-[#22e565] font-bold">18.4 dBFS</span>
           </div>
-          <div className="flex justify-between items-center text-[#8ba695]">
+          <div className="flex justify-between items-center text-[#7ea385]">
             <span>INTERMODULATION THD:</span>
-            <span className="text-[#f0fdf4]">&lt; 0.008%</span>
+            <span className="text-[#e8f2e6] font-semibold">&lt; 0.008%</span>
           </div>
-          <div className="flex justify-between items-center text-[#8ba695]">
-            <span>ACOUSTIC LEAKAGE:</span>
-            <span className="text-[#00e599] font-bold">-31.2 dB</span>
+          <div className="flex justify-between items-center text-[#7ea385]">
+            <span>PASSIVE EAR SEAL:</span>
+            <span className="text-[#22e565] font-bold">-31.2 dB (NRR 28)</span>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Cpu, Activity, Radio, Volume2, Shield, RefreshCw } from 'lucide-react';
+import { ArrowRight, Cpu, Activity, Radio, Volume2, Shield, RefreshCw, Crosshair } from 'lucide-react';
 import { useViewerStore, viewerStore } from '../../store/useViewerStore';
 
 interface PipelineOverlayProps {
@@ -10,26 +10,24 @@ export const PipelineOverlay: React.FC<PipelineOverlayProps> = ({ standalone = f
   const { ancActive, voiceActive } = useViewerStore();
 
   const containerClass = standalone
-    ? 'absolute top-20 left-6 z-20 bg-[#08140e]/95 border border-[#143526] p-3.5 rounded-xl shadow-2xl max-w-2xl animate-fade-in font-mono select-none backdrop-blur-xl'
-    : 'p-3 rounded-xl bg-[#08140e] border border-[#143526] w-full font-mono select-none';
+    ? 'mil-corner-bracket absolute top-20 left-6 z-20 bg-[#0b120c]/95 border border-[#223425] p-3.5 rounded shadow-2xl max-w-2xl animate-fade-in font-mono select-none backdrop-blur-md'
+    : 'mil-corner-bracket p-3 rounded bg-[#0b120c] border border-[#223425] w-full font-mono select-none';
 
   return (
     <div className={containerClass}>
-      <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-[#143526]">
+      <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-[#223425]">
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded bg-[#00e599]/10 border border-[#00e599]/30 flex items-center justify-center text-[#00e599]">
-            <Activity className="w-3 h-3" />
-          </div>
-          <h3 className="text-xs tracking-wider text-[#f0fdf4] font-bold uppercase">
-            DUAL-PATH SIGNAL ARCHITECTURE
+          <Crosshair className="w-3.5 h-3.5 text-[#22e565]" />
+          <h3 className="text-xs tracking-wider text-[#f0fdf4] font-stencil font-bold uppercase">
+            C4ISR DUAL-PATH AUDIO ARCHITECTURE
           </h3>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="text-[9px] font-mono text-[#00e599] bg-[#00e599]/10 px-2 py-0.5 rounded border border-[#00e599]/30">
-            YAMNet AI + FxLMS
+        <div className="flex items-center gap-1.5">
+          <span className="text-[9px] font-stencil text-[#22e565] bg-[#22e565]/10 px-2 py-0.5 rounded border border-[#22e565]/30">
+            FxLMS 180° NULL
           </span>
-          <span className="text-[9px] font-mono text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded border border-[#10b981]/30">
-            DeepFilterNet3
+          <span className="text-[9px] font-stencil text-[#22e565] bg-[#22e565]/10 px-2 py-0.5 rounded border border-[#22e565]/30">
+            DEEPFILTERNET3
           </span>
         </div>
       </div>
@@ -37,57 +35,57 @@ export const PipelineOverlay: React.FC<PipelineOverlayProps> = ({ standalone = f
       {/* PATH A: REAL-TIME LOW-LATENCY DETERMINISTIC ANC FEEDBACK LOOP */}
       <div className="mb-3">
         <div className="flex items-center justify-between mb-1.5">
-          <span className="text-[9px] font-bold text-[#00e599] uppercase tracking-wider flex items-center gap-1">
-            <Shield className="w-3 h-3 text-[#00e599]" />
-            PATH A: DETERMINISTIC ANC ADAPTIVE FEEDBACK LOOP (FxLMS &lt; 0.8ms)
+          <span className="text-[9px] font-stencil font-bold text-[#22e565] uppercase tracking-wider flex items-center gap-1">
+            <Shield className="w-3 h-3 text-[#22e565]" />
+            PATH A: DETERMINISTIC HARD REAL-TIME ANC LOOP (FxLMS &lt; 0.8ms)
           </span>
-          <span className="text-[8px] text-[#4e6a5b]">HARD REAL-TIME DSP</span>
+          <span className="text-[8px] text-[#4e6a5b]">FPGA / HARD RT</span>
         </div>
 
         <div className="flex items-center gap-1.5">
           {/* Step 1: External Ref Mic */}
           <div
             onClick={() => viewerStore.selectComponent('externalRefMic')}
-            className="flex-1 p-2 rounded-lg bg-[#030906] border border-[#143526] hover:border-[#00e599]/50 text-[9px] cursor-pointer transition-all"
+            className="flex-1 p-2 rounded bg-[#070e09] border border-[#223425] hover:border-[#22e565]/50 text-[9px] cursor-pointer transition-all"
           >
-            <div className="text-[#00e599] font-bold truncate">EXT REF MIC</div>
-            <div className="text-[#8ba695] text-[8px] truncate">Captures x(n) Ambient</div>
+            <div className="text-[#22e565] font-stencil font-bold truncate">EXT REF MIC</div>
+            <div className="text-[#8ba695] text-[8px] truncate">x(n) Threat Ambient</div>
           </div>
 
-          <ArrowRight className="w-3 h-3 text-[#00e599]/70 flex-shrink-0" />
+          <ArrowRight className="w-3 h-3 text-[#22e565]/70 flex-shrink-0" />
 
           {/* Step 2: DSP Controller */}
           <div
             onClick={() => viewerStore.selectComponent('dspModule')}
-            className="flex-1 p-2 rounded-lg bg-[#030906] border border-[#143526] hover:border-amber-400/50 text-[9px] cursor-pointer transition-all"
+            className="flex-1 p-2 rounded bg-[#070e09] border border-[#223425] hover:border-[#f59e0b]/50 text-[9px] cursor-pointer transition-all"
           >
-            <div className="text-amber-400 font-bold truncate">DSP CONTROLLER</div>
-            <div className="text-[#8ba695] text-[8px] truncate">FxLMS Filter Engine</div>
+            <div className="text-[#f59e0b] font-stencil font-bold truncate">DSP CONTROLLER</div>
+            <div className="text-[#8ba695] text-[8px] truncate">Adaptive FxLMS Core</div>
           </div>
 
-          <ArrowRight className="w-3 h-3 text-[#00e599]/70 flex-shrink-0" />
+          <ArrowRight className="w-3 h-3 text-[#22e565]/70 flex-shrink-0" />
 
           {/* Step 3: Speaker Driver */}
           <div
             onClick={() => viewerStore.selectComponent('speakerDriver')}
-            className="flex-1 p-2 rounded-lg bg-[#030906] border border-[#143526] hover:border-emerald-400/50 text-[9px] cursor-pointer transition-all"
+            className="flex-1 p-2 rounded bg-[#070e09] border border-[#223425] hover:border-emerald-400/50 text-[9px] cursor-pointer transition-all"
           >
-            <div className="text-emerald-400 font-bold truncate">SPEAKER DRIVER</div>
-            <div className="text-[#8ba695] text-[8px] truncate">Anti-Noise Wave (-x̂)</div>
+            <div className="text-emerald-400 font-stencil font-bold truncate">SPEAKER DRIVER</div>
+            <div className="text-[#8ba695] text-[8px] truncate">-x̂(n) Anti-Noise Wave</div>
           </div>
 
-          <ArrowRight className="w-3 h-3 text-[#00e599]/70 flex-shrink-0" />
+          <ArrowRight className="w-3 h-3 text-[#22e565]/70 flex-shrink-0" />
 
           {/* Step 4: Internal Error Mic */}
           <div
             onClick={() => viewerStore.selectComponent('internalErrorMic')}
-            className="flex-1 p-2 rounded-lg bg-[#030906] border border-[#143526] hover:border-purple-400/50 text-[9px] cursor-pointer transition-all"
+            className="flex-1 p-2 rounded bg-[#070e09] border border-[#223425] hover:border-purple-400/50 text-[9px] cursor-pointer transition-all"
           >
-            <div className="text-purple-400 font-bold truncate flex items-center gap-1">
+            <div className="text-purple-400 font-stencil font-bold truncate flex items-center gap-1">
               <RefreshCw className="w-2.5 h-2.5 animate-spin" />
               <span>ERROR MIC</span>
             </div>
-            <div className="text-[#8ba695] text-[8px] truncate">Residual Error e(n)</div>
+            <div className="text-[#8ba695] text-[8px] truncate">e(n) Residual Null</div>
           </div>
         </div>
       </div>
@@ -95,46 +93,46 @@ export const PipelineOverlay: React.FC<PipelineOverlayProps> = ({ standalone = f
       {/* PATH B: SPEECH ENHANCEMENT & TACTICAL COMMS */}
       <div>
         <div className="flex items-center justify-between mb-1.5">
-          <span className="text-[9px] font-bold text-[#10b981] uppercase tracking-wider flex items-center gap-1">
-            <Volume2 className="w-3 h-3 text-[#10b981]" />
-            PATH B: SPEECH ENHANCEMENT &amp; TACTICAL COMMS (DEEPFILTERNET3 / ONNX)
+          <span className="text-[9px] font-stencil font-bold text-[#22e565] uppercase tracking-wider flex items-center gap-1">
+            <Volume2 className="w-3 h-3 text-[#22e565]" />
+            PATH B: NEURAL SPEECH ENHANCEMENT &amp; TACTICAL RADIO LINK (ONNX)
           </span>
-          <span className="text-[8px] text-[#4e6a5b]">EMBEDDED RASPBERRY PI</span>
+          <span className="text-[8px] text-[#4e6a5b]">ARM NEON CORTEX-A72</span>
         </div>
 
         <div className="flex items-center gap-1.5">
           {/* Step 1: Boom Mic */}
           <div
             onClick={() => viewerStore.selectComponent('boomMic')}
-            className="flex-1 p-2 rounded-lg bg-[#030906] border border-[#143526] hover:border-[#00e599]/50 text-[9px] cursor-pointer transition-all"
+            className="flex-1 p-2 rounded bg-[#070e09] border border-[#223425] hover:border-[#22e565]/50 text-[9px] cursor-pointer transition-all"
           >
-            <div className="text-[#00e599] font-bold truncate">BOOM MIC</div>
-            <div className="text-[#8ba695] text-[8px] truncate">Near-Mouth Voice s(n)</div>
+            <div className="text-[#22e565] font-stencil font-bold truncate">BOOM TRANSDUCER</div>
+            <div className="text-[#8ba695] text-[8px] truncate">Hypercardioid Voice s(n)</div>
           </div>
 
-          <ArrowRight className="w-3 h-3 text-[#10b981]/70 flex-shrink-0" />
+          <ArrowRight className="w-3 h-3 text-[#22e565]/70 flex-shrink-0" />
 
           {/* Step 2: Raspberry Pi Compute */}
           <div
             onClick={() => viewerStore.selectComponent('raspberryPi')}
-            className="flex-1 p-2 rounded-lg bg-[#030906] border border-[#143526] hover:border-amber-400/50 text-[9px] cursor-pointer transition-all"
+            className="flex-1 p-2 rounded bg-[#070e09] border border-[#223425] hover:border-[#f59e0b]/50 text-[9px] cursor-pointer transition-all"
           >
-            <div className="text-amber-400 font-bold truncate flex items-center gap-1">
+            <div className="text-[#f59e0b] font-stencil font-bold truncate flex items-center gap-1">
               <Cpu className="w-2.5 h-2.5" />
-              <span>RASPBERRY PI</span>
+              <span>HARDENED PI</span>
             </div>
             <div className="text-[#8ba695] text-[8px] truncate">DeepFilterNet3 AI</div>
           </div>
 
-          <ArrowRight className="w-3 h-3 text-[#10b981]/70 flex-shrink-0" />
+          <ArrowRight className="w-3 h-3 text-[#22e565]/70 flex-shrink-0" />
 
           {/* Step 3: Tactical Radio Comms Out */}
-          <div className="flex-1 p-2 rounded-lg bg-[#030906] border border-[#143526] text-[9px]">
-            <div className="text-[#10b981] font-bold truncate flex items-center gap-1">
+          <div className="flex-1 p-2 rounded bg-[#070e09] border border-[#223425] text-[9px]">
+            <div className="text-[#22e565] font-stencil font-bold truncate flex items-center gap-1">
               <Radio className="w-2.5 h-2.5" />
-              <span>CLEAR COMMS</span>
+              <span>RADIO OUT</span>
             </div>
-            <div className="text-[#8ba695] text-[8px] truncate">98.4% Intelligibility</div>
+            <div className="text-[#8ba695] text-[8px] truncate">99.1% Intelligibility</div>
           </div>
         </div>
       </div>
