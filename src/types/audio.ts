@@ -6,7 +6,8 @@ export type ActiveView =
   | 'streaming' 
   | 'devices' 
   | 'system'
-  | 'hardware3d';
+  | 'hardware3d'
+  | 'training';
 
 export type ProcessingMode = 'deepfilternet3' | 'spectral' | 'hybrid' | 'bypass';
 

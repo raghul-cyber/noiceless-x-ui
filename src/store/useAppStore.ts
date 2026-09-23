@@ -94,7 +94,7 @@ const DEFAULT_RECORDINGS: AudioRecording[] = [
 const getInitialView = (): ActiveView => {
   if (typeof window !== 'undefined') {
     const hash = window.location.hash.replace('#', '').toLowerCase();
-    const validViews: ActiveView[] = ['overview', 'live', 'hardware3d', 'recordings', 'analysis', 'streaming', 'devices', 'system'];
+    const validViews: ActiveView[] = ['overview', 'live', 'hardware3d', 'recordings', 'analysis', 'streaming', 'devices', 'system', 'training'];
     if (validViews.includes(hash as ActiveView)) {
       return hash as ActiveView;
     }
@@ -115,7 +115,7 @@ export function useAppStore(): AppState {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '').toLowerCase();
-      const validViews: ActiveView[] = ['overview', 'live', 'hardware3d', 'recordings', 'analysis', 'streaming', 'devices', 'system'];
+      const validViews: ActiveView[] = ['overview', 'live', 'hardware3d', 'recordings', 'analysis', 'streaming', 'devices', 'system', 'training'];
       if (validViews.includes(hash as ActiveView)) {
         setActiveViewState(hash as ActiveView);
       }

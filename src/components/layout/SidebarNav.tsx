@@ -8,6 +8,7 @@ import {
   SlidersHorizontal, 
   Cpu, 
   Box,
+  BrainCircuit,
   ShieldAlert,
   Wifi
 } from 'lucide-react';
@@ -24,10 +25,11 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({ store }) => {
     { id: 'live', index: '02', label: 'COMBAT COMMS', icon: Radio, badge: 'REALTIME' },
     { id: 'hardware3d', index: '03', label: 'SENSOR RIG 3D', icon: Box, badge: 'SIM' },
     { id: 'analysis', index: '04', label: 'THREAT INTERCEPT', icon: BarChart3 },
-    { id: 'devices', index: '05', label: 'FIELD HARDWARE', icon: SlidersHorizontal },
-    { id: 'recordings', index: '06', label: 'MISSION LOGS', icon: Disc, badge: `${store.recordings.length}` },
-    { id: 'streaming', index: '07', label: 'TACTICAL MESH', icon: Network, badge: store.isStreamingActive ? 'LIVE' : 'IDLE' },
-    { id: 'system', index: '08', label: 'C4ISR DIAGNOSTICS', icon: Cpu },
+    { id: 'training', index: '05', label: 'AI RETRAINING LAB', icon: BrainCircuit, badge: 'TRAIN' },
+    { id: 'devices', index: '06', label: 'FIELD HARDWARE', icon: SlidersHorizontal },
+    { id: 'recordings', index: '07', label: 'MISSION LOGS', icon: Disc, badge: `${store.recordings.length}` },
+    { id: 'streaming', index: '08', label: 'TACTICAL MESH', icon: Network, badge: store.isStreamingActive ? 'LIVE' : 'IDLE' },
+    { id: 'system', index: '09', label: 'C4ISR DIAGNOSTICS', icon: Cpu },
   ];
 
   return (

@@ -10,6 +10,7 @@ import { AnalysisView } from './components/views/AnalysisView';
 import { StreamingView } from './components/views/StreamingView';
 import { DevicesView } from './components/views/DevicesView';
 import { SystemView } from './components/views/SystemView';
+import { ModelTrainingView } from './components/views/ModelTrainingView';
 
 export const App: React.FC = () => {
   const store = useAppStore();
@@ -27,10 +28,11 @@ export const App: React.FC = () => {
           {store.activeView === 'overview' && <OverviewView store={store} />}
           {store.activeView === 'live' && <LiveView store={store} />}
           {store.activeView === 'hardware3d' && <Hardware3DView />}
-          {store.activeView === 'recordings' && <RecordingsView store={store} />}
           {store.activeView === 'analysis' && <AnalysisView store={store} />}
-          {store.activeView === 'streaming' && <StreamingView store={store} />}
+          {store.activeView === 'training' && <ModelTrainingView store={store} />}
           {store.activeView === 'devices' && <DevicesView store={store} />}
+          {store.activeView === 'recordings' && <RecordingsView store={store} />}
+          {store.activeView === 'streaming' && <StreamingView store={store} />}
           {store.activeView === 'system' && <SystemView store={store} />}
         </main>
       </div>
